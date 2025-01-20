@@ -1,0 +1,219 @@
+input[type=text], input[type=password]
+{
+    border:none;
+    border-bottom: 1px solid lightgray;
+}
+
+.loginDialogScreen {
+    background: -webkit-gradient(linear, left top, left bottom, from(#080228), to(rgba(64, 19, 196, 0.55))) fixed !important;
+    box-shadow: rgb(23, 32, 42) 0px 20px 30px -10px;
+    position: absolute;
+    top: 20%;
+    height: 40%;
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    border: 2px solid #03030e;
+    width: 35% !important;
+    font-size: 1.6em;
+    color: #FAF10AFF;
+    border-radius: 10px;
+    background-color: #f4d2fa !important;
+    overflow: hidden;
+}
+
+.loginDialogButton {
+    font-weight: normal;
+}
+
+.loginDialogTitle {
+    font-size: 2.8em !important;
+    letter-spacing: 20px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-weight: lighter;
+    font-stretch: ultra-expanded;
+    padding: 10px;
+    color: #FAF10AFF;
+    border-bottom: 1px #011317 solid;
+    width: 100%;
+    background: -webkit-gradient(linear, left top, left bottom, from(#74a5ee), to(rgba(20, 88, 220, 0.55))) fixed !important;
+}
+
+.loginDialogTitleLeft {
+    text-align: left !important;
+    width: 90% !important;
+}
+
+.loginDialogCancelHeader {
+    color: #eef1f8;
+    font-weight: normal;
+    text-align: center;
+    border: 3px solid #748cc9;
+    letter-spacing: 0px;
+    line-height: 1.5em;
+    width: 7% !important;
+    border-radius: 10px;
+    font-size: 0.6em;
+    background: -webkit-gradient(linear, left top, left bottom, from(#cee5ff), to(rgba(151, 169, 248, 0.55))) fixed !important;
+    box-shadow: rgb(38, 57, 77) 0px 20px 30px -5px;
+    z-index: 2000;
+}
+
+.loginTitleStylee {
+    text-align: center;
+    font-size: 1.8em;
+    font-weight: lighter;
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.15;
+    margin: 0;
+    letter-spacing: 2px;
+}
+
+@keyframes flickerAnimation {
+    0%   { opacity:1; }
+    50%  { opacity:0; }
+    100% { opacity:1; }
+}
+@-o-keyframes flickerAnimation{
+    0%   { opacity:1; }
+    50%  { opacity:0; }
+    100% { opacity:1; }
+}
+@-moz-keyframes flickerAnimation{
+    0%   { opacity:1; }
+    50%  { opacity:0; }
+    100% { opacity:1; }
+}
+@-webkit-keyframes flickerAnimation{
+    0%   { opacity:1; }
+    50%  { opacity:0; }
+    100% { opacity:1; }
+}
+.animateflicker {
+    -webkit-animation: flickerAnimation 1s infinite;
+    -moz-animation: flickerAnimation 3s infinite;
+    -o-animation: flickerAnimation 1s infinite;
+    animation: flickerAnimation 3s infinite;
+    text-align: center;
+    text-align: center;
+    font-size: 1.8em;
+    font-weight: lighter;
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.15;
+    margin: 0;
+    letter-spacing: 2px;
+}
+
+.passwordInput {
+    margin-top: 29px;
+    width: fit-content;
+    font-size: 1.0em;
+    line-height: 1.0em;
+    text-align: left;
+    color: #eef1f8;
+    font-weight: normal;
+    display: inline-block;
+    justify-content: center;
+    align-items: center;
+    border: 3px solid;
+}
+
+input {border:0;outline:0;}
+input:focus {outline:none!important;}
+
+.loginDialogCancelHeader:hover {
+    color: #042d6b;
+    border: 3px solid #b0c3f6;
+    box-shadow: rgb(0, 6, 12) 0px 20px 30px -5px;
+    background: -webkit-gradient(linear, left top, left bottom, from(#f2f5f8), to(rgba(196, 205, 246, 0.55))) fixed !important;
+}
+
+.loginDialogContent {
+    padding-top: 10%;
+    margin-top: 5%;
+    margin-bottom: 3%;
+    padding-bottom: 3%;
+    color: #FAF10AFF;
+    overflow-y: auto;
+    height: 70%;
+    z-index: -1000;
+}
+
+.loginDialogContent::-webkit-scrollbar {
+    width: 12px;
+}
+
+.loginDialogContent::-webkit-scrollbar-track {
+    background-color: rgb(114, 17, 124);
+    border-radius: 12px;
+    margin-top: 5%;
+}
+
+.loginDialogContent::-webkit-scrollbar-thumb {
+    background-color: rgb(96, 11, 114);
+    border-radius: 12px;
+}
+
+.loginDialogButtons {
+    margin-top: 4%;
+    padding-top: 4%;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    padding: 10px;
+    text-align: right;
+    border-top: 1px #0d1111 solid;
+    border-radius: 3px;
+    z-index: 4000;
+}
+
+/*   Open state of the dialog  */
+dialog[open] {
+    opacity: 1;
+    transform: scaleY(1);
+}
+
+/*   Closed state of the dialog   */
+dialog {
+    opacity: 0;
+    transform: scaleY(0);
+    transition: opacity 0.7s ease-out,
+    transform 0.7s ease-out,
+    overlay 0.7s ease-out allow-discrete,
+    display 0.7s ease-out allow-discrete;
+}
+
+/*   Before-open state  */
+/* Needs to be after the previous dialog[open] rule to take effect,
+    as the specificity is the same */
+@starting-style {
+    dialog[open] {
+        opacity: 0;
+        transform: scaleY(0);
+    }
+}
+
+/* Transition the :backdrop when the dialog modal is promoted to the top layer */
+.dialog::backdrop {
+    background-color: rgb(0 0 0 / 0%);
+    transition: display 0.7s allow-discrete,
+    overlay 0.7s allow-discrete,
+    background-color 0.7s;
+}
+
+dialog[open]::backdrop {
+    background-color: rgb(0 0 0 / 35%);
+}
+
+/* This starting-style rule cannot be nested inside the above selector
+because the nesting selector cannot represent pseudo-elements. */
+
+@starting-style {
+    dialog[open]::backdrop {
+        background-color: rgb(0 0 0 / 0%);
+    }
+}

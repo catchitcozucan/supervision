@@ -1,0 +1,71 @@
+/* Footer */
+
+.footerLogo {
+    color: black;
+    position: relative;
+    background-position: top right;
+    background-repeat: no-repeat;
+    background-image: url('../../images/footer_logo.png');
+    width: 350px;
+    height: 70px;
+    display: block;
+}
+
+.theGrid {
+    padding-top: 12px;
+    padding-left: 8px;
+    padding-left: 8px;
+}
+
+.footerLeft {
+    position: relative;
+    height: 70px;
+    background: linear-gradient(to left, rgba(255, 0, 0, 0), rgb(245, 104, 22));
+    color: #7eef0d;
+    font-weight: normal;
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.9cap;
+    font-family: 'DejaVu Sans', sans-serif, Sans, 'Helvetica Neue';
+}
+
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    padding: 0px;
+    text-align: left;
+    border-top: 1px #0d1111 solid;
+    background-color: #f3fb99;
+}
+
+.nollettnoll {
+    color: #17ceed;
+    font-weight: normal;
+    padding-top: 23px;
+    padding-right: 17px;
+    text-align: right;
+    margin-right: 5px;
+    font-weight: normal;
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.9cap;
+    font-family: 'DejaVu Sans', sans-serif, Sans, 'Helvetica Neue';
+}
+
+.tableNoSpace {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+.logo {
+    user-select: none;
+    -webkit-user-drag: none;
+    width: 100%;
+    height: 222px;
+    display: block;
+    padding-left: 18px;
+    padding-top: 16px;
+    margin-top: 13px;
+    margin-left: 13px;
+}

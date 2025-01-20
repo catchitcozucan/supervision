@@ -1,0 +1,51 @@
+{
+  "entityNames": "The Administrative Process",
+  "bucketNames": [
+    "FAILED_CREATE_RECORD",
+    "CREATE_RECORD",
+    "FAILED_CLUSTER_SYNC",
+    "CLUSTER_SYNC",
+    "FAILED_STORED_DATA",
+    "STORED_DATA",
+    "FAILED_BULK_READ_DONE",
+    "BULK_READ_DONE",
+    "FAILED_INITIATED",
+    "INITIATED",
+    "FAILED_WRITE_RECORDS",
+    "WRITE_RECORDS",
+    "FAILED_STORE_DATA",
+    "STORE_DATA",
+    "FAILED_FETCH_DATA",
+    "FETCH_DATA",
+    "FAILED_TO_WRITE_REPORT",
+    "WROTE_REPORT"],
+  "histogramz": [
+    {
+      "label": "Customer Demoing",
+      "sum": 8287,
+      "actuallyFinished": 1321,
+      "actualStepProgress": 13,
+      "numberOfSubjectsInFailstate": 3967,
+      "data": [
+        824,
+        625,
+        789,
+        637,
+        86,
+        224,
+        385,
+        145,
+        83,
+        67,
+        302,
+        252,
+        470,
+        642,
+        786,
+        321,
+        242,
+        1321
+      ]
+    }
+  ]
+}

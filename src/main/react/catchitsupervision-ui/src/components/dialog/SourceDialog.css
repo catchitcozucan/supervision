@@ -1,0 +1,276 @@
+/*----------------------- Dialog ----------------------------------- */
+.dialogScreen {
+    background: -webkit-gradient(linear, left top, left bottom, from(#080228), to(rgba(64, 19, 196, 0.55))) fixed !important;
+    box-shadow: rgb(23, 32, 42) 0px 20px 30px -10px;
+    position: absolute;
+    top: 10%;
+    height: 70%;
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    border: 2px solid #03030e;
+    width: 85% !important;
+    font-size: 1.6em;
+    color: #FAF10AFF;
+    border-radius: 10px;
+    background-color: #f4d2fa !important;
+    overflow: hidden;
+}
+
+.dialogButton {
+    font-weight: normal;
+}
+
+.dialogTitle {
+    font-size: 2.8em !important;
+    letter-spacing: 20px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-weight: lighter;
+    font-stretch: ultra-expanded;
+    padding: 10px;
+    color: #FAF10AFF;
+    border-bottom: 1px #011317 solid;
+    width: 100%;
+    background: -webkit-gradient(linear, left top, left bottom, from(#74a5ee), to(rgba(20, 88, 220, 0.55))) fixed !important;
+}
+
+.dialogTitleLeft {
+    text-align: left !important;
+    width: 96% !important;
+}
+
+.dialogCancelHeader {
+    color: #eef1f8;
+    font-weight: normal;
+    text-align: center;
+    border: 3px solid #748cc9;
+    letter-spacing: 0px;
+    line-height: 1.3em;
+    width: 3% !important;
+    border-radius: 10px;
+    font-size: 0.8em;
+    height: 2%;
+    background: -webkit-gradient(linear, left top, left bottom, from(#cee5ff), to(rgba(151, 169, 248, 0.55))) fixed !important;
+    box-shadow: rgb(38, 57, 77) 0px 20px 30px -5px;
+    margin-left: 4px;
+}
+
+.dialogCancelHeader:hover {
+    color: #042d6b;
+    border: 3px solid #b0c3f6;
+    box-shadow: rgb(0, 6, 12) 0px 20px 30px -5px;
+    background: -webkit-gradient(linear, left top, left bottom, from(#f2f5f8), to(rgba(196, 205, 246, 0.55))) fixed !important;
+}
+
+.dialogContent {
+    padding-top: 1%;
+    margin-top: 5%;
+    margin-bottom: 3%;
+    padding-bottom: 3%;
+    color: #FAF10AFF;
+    overflow-y: auto;
+    height: 70%;
+}
+
+.dialogContent::-webkit-scrollbar {
+    width: 12px;
+}
+
+.dialogContent::-webkit-scrollbar-track {
+    background-color: rgb(114, 17, 124);
+    border-radius: 12px;
+    margin-top: 5%;
+}
+
+.dialogContent::-webkit-scrollbar-thumb {
+    background-color: rgb(96, 11, 114);
+    border-radius: 12px;
+}
+
+.dialogButtonBar {
+    margin-top: 4%;
+    padding-top: 4%;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    padding: 10px;
+    border-top: 1px #0d1111 solid;
+    border-radius: 3px;
+}
+
+.dialogButtons {
+    text-align: right !important;
+    margin-left: 88%;
+}
+
+/* for sort of std laptop */
+@media (max-width: 1920px) {
+    .dialogButtons {
+        text-align: right !important;
+        margin-left: 74%;
+    }
+}
+
+/* for sort of bigger screens */
+@media (min-width: 2560px) {
+    .dialogButtons {
+        text-align: right !important;
+        margin-left: 83%;
+    }
+}
+
+.hamburgerHill {
+    text-align: left !important;
+    color: #bfc5ba;
+    border: 2px #3b038f solid;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+    background: -webkit-linear-gradient(#312404, #376ee3);
+}
+
+.editHill {
+    margin-left: 1%;
+    color: #bfc5ba;
+    border: 2px #3b038f solid;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+    background: -webkit-linear-gradient(#312404, #376ee3);
+}
+
+.editHill:hover {
+    color: #042d6b;
+    border: 2px solid #b0c3f6;
+    box-shadow: rgb(0, 6, 12) 0px 20px 30px -5px;
+    background: -webkit-gradient(linear, left top, left bottom, from(#f2f5f8), to(rgba(196, 205, 246, 0.55))) fixed !important;
+}
+
+.hamburgerHill:hover {
+    color: #042d6b;
+    border: 2px solid #b0c3f6;
+    box-shadow: rgb(0, 6, 12) 0px 20px 30px -5px;
+    background: -webkit-gradient(linear, left top, left bottom, from(#f2f5f8), to(rgba(196, 205, 246, 0.55))) fixed !important;
+}
+
+.plusHill {
+    margin-left: 1%;
+    color: #bfc5ba;
+    border: 2px #3b038f solid;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+    background: -webkit-linear-gradient(#312404, #376ee3);
+}
+
+.plusHill:hover {
+    color: #042d6b;
+    border: 2px solid #b0c3f6;
+    box-shadow: rgb(0, 6, 12) 0px 20px 30px -5px;
+    background: -webkit-gradient(linear, left top, left bottom, from(#f2f5f8), to(rgba(196, 205, 246, 0.55))) fixed !important;
+}
+
+/*   Open state of the dialog  */
+dialog[open] {
+    opacity: 1;
+    transform: scaleY(1);
+}
+
+/*   Closed state of the dialog   */
+dialog {
+    opacity: 0;
+    transform: scaleY(0);
+    transition: opacity 0.7s ease-out,
+    transform 0.7s ease-out,
+    overlay 0.7s ease-out allow-discrete,
+    display 0.7s ease-out allow-discrete;
+}
+
+/*   Before-open state  */
+/* Needs to be after the previous dialog[open] rule to take effect,
+    as the specificity is the same */
+@starting-style {
+    dialog[open] {
+        opacity: 0;
+        transform: scaleY(0);
+    }
+}
+
+/* Transition the :backdrop when the dialog modal is promoted to the top layer */
+.dialog::backdrop {
+    background-color: rgb(0 0 0 / 0%);
+    transition: display 0.7s allow-discrete,
+    overlay 0.7s allow-discrete,
+    background-color 0.7s;
+}
+
+dialog[open]::backdrop {
+    background-color: rgb(0 0 0 / 35%);
+}
+
+/* This starting-style rule cannot be nested inside the above selector
+because the nesting selector cannot represent pseudo-elements. */
+
+@starting-style {
+    dialog[open]::backdrop {
+        background-color: rgb(0 0 0 / 0%);
+    }
+}
+
+.formPlayground {
+    border: 1px solid #f5d226;
+    border-radius: 30px;
+    width: fit-content;
+    font-size: 1.4em;
+    line-height: 1.0em;
+    text-align: left;
+    font-weight: lighter;
+    display: inline-block;
+    justify-content: left;
+    align-items: flex-start;
+    color: #faf10a;
+    margin-bottom: 30px;
+    width: 100%;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+/* for sort of big screens */
+@media only screen and (min-width: 2560px) {
+    .spinnerTesterLarge {
+        display: inline-block;
+        position: absolute;
+        textAlign: right;
+        alignItems: right;
+        width: fit-content;
+        left: 41%;
+    }
+}
+
+/* for sort of std laptop */
+@media only screen and (max-width: 1920px) {
+    .spinnerTesterMid {
+        display: inline-block;
+        position: absolute;
+        textAlign: right;
+        alignItems: right;
+        width: fit-content;
+        left: 74%;
+    }
+}
+
+/* for sort of modile */
+@media only screen and (max-width: 1026px) {
+    .spinnerTesterMid {
+        display: inline-block;
+        position: absolute;
+        textAlign: right;
+        alignItems: right;
+        width: fit-content;
+        left: 41%;
+    }
+}

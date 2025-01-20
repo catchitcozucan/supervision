@@ -1,0 +1,378 @@
+[
+  {
+    "domain": "Finance",
+    "department": "Customer Relations",
+    "processName": "Customer Demoing",
+    "accessUrl": "https://registry.mydomain.com/application/histogram",
+    "requestKey": {
+      "key": "a9efa869-5824-414e-97dd-52189bc23e00"
+    },
+    "state": "DEMO",
+    "sourceDetailDto": {
+      "key": "a9efa869-5824-414e-97dd-52189bc23e00",
+      "proxyHost": "myProxy.nowhere.com",
+      "proxyPort": 666,
+      "basicAuthUsername": "basiAuthSecretUser",
+      "basicAuthPassword": "myuSecretbasicAuthPwd",
+      "headers": [
+        {
+          "name": "mySpecialheader1",
+          "value": "234feffwefsdf"
+        },
+        {
+          "name": "mySpecialheader2",
+          "value": "234fefEEwefsdf"
+        }
+      ]
+    }
+  },
+  {
+    "domain": "Finance",
+    "department": "Human Resources",
+    "processName": "Carreer Program",
+    "accessUrl": "https://registry.mydomain.com/application/histogram",
+    "requestKey": {
+      "key": "a9efa869-5824-414e-97dd-52189bc23e001"
+    },
+    "state": "DEMO",
+    "sourceDetailDto": {
+      "key": "a9efa869-5824-414e-97dd-52189bc23e00",
+      "proxyHost": "myProxy.nowhere.com",
+      "proxyPort": 666,
+      "basicAuthUsername": "basiAuthSecretUser",
+      "basicAuthPassword": "myuSecretbasicAuthPwd",
+      "headers": [
+        {
+          "name": "mySpecialheader1",
+          "value": "234feffwefsdf"
+        },
+        {
+          "name": "mySpecialheader2",
+          "value": "234fefEEwefsdf"
+        }
+      ]
+    }
+  },
+  {
+    "domain": "Finance",
+    "department": "International Business",
+    "processName": "Customer Welcoming Process",
+    "accessUrl": "https://registry.mydomain.com/application/histogram",
+    "requestKey": {
+      "key": "a9efa869-5824-414e-97dd-52189bc23e02"
+    },
+    "state": "DEMO",
+    "sourceDetailDto": {
+      "key": "a9efa869-5824-414e-97dd-52189bc23e00",
+      "proxyHost": "myProxy.nowhere.com",
+      "proxyPort": 666,
+      "basicAuthUsername": "basiAuthSecretUser",
+      "basicAuthPassword": "myuSecretbasicAuthPwd",
+      "headers": [
+        {
+          "name": "mySpecialheader1",
+          "value": "234feffwefsdf"
+        },
+        {
+          "name": "mySpecialheader2",
+          "value": "234fefEEwefsdf"
+        }
+      ]
+    }
+  },
+  {
+    "domain": "Product Development",
+    "department": "Research and Development",
+    "processName": "Platform realization",
+    "accessUrl": "https://registry.mydomain.com/notification/histogram",
+    "requestKey": {
+      "key": "a9efa869-5824-414e-97dd-52189bc23e03"
+    },
+    "state": "DEMO",
+    "sourceDetailDto": {
+      "key": "a9efa869-5824-414e-97dd-52189bc23e00",
+      "proxyHost": "myProxy.nowhere.com",
+      "proxyPort": 666,
+      "basicAuthUsername": "basiAuthSecretUser",
+      "basicAuthPassword": "myuSecretbasicAuthPwd",
+      "headers": [
+        {
+          "name": "mySpecialheader1",
+          "value": "234feffwefsdf"
+        },
+        {
+          "name": "mySpecialheader2",
+          "value": "234fefEEwefsdf"
+        }
+      ]
+    }
+  },
+  {
+    "domain": "Product Development",
+    "department": "Information Systems",
+    "processName": "System Introduction",
+    "accessUrl": "https://registry.mydomain.com/notification/histogram",
+    "requestKey": {
+      "key": "a9efa869-5824-414e-97dd-52189bc23e04"
+    },
+    "state": "DEMO",
+    "sourceDetailDto": {
+      "key": "a9efa869-5824-414e-97dd-52189bc23e00",
+      "proxyHost": "myProxy.nowhere.com",
+      "proxyPort": 666,
+      "basicAuthUsername": "basiAuthSecretUser",
+      "basicAuthPassword": "myuSecretbasicAuthPwd",
+      "headers": [
+        {
+          "name": "mySpecialheader1",
+          "value": "234feffwefsdf"
+        },
+        {
+          "name": "mySpecialheader2",
+          "value": "234fefEEwefsdf"
+        }
+      ]
+    }
+  },
+  {
+    "domain": "Product Development",
+    "department": "Information Systems",
+    "processName": "System Termination",
+    "accessUrl": "https://registry.mydomain.com/notification/histogram",
+    "requestKey": {
+      "key": "a9efa869-5824-414e-97dd-52189bc23e05"
+    },
+    "state": "DEMO",
+    "sourceDetailDto": {
+      "key": "a9efa869-5824-414e-97dd-52189bc23e00",
+      "proxyHost": "myProxy.nowhere.com",
+      "proxyPort": 666,
+      "basicAuthUsername": "basiAuthSecretUser",
+      "basicAuthPassword": "myuSecretbasicAuthPwd",
+      "headers": [
+        {
+          "name": "mySpecialheader1",
+          "value": "234feffwefsdf"
+        },
+        {
+          "name": "mySpecialheader2",
+          "value": "234fefEEwefsdf"
+        }
+      ]
+    }
+  },
+  {
+    "domain": "Support",
+    "department": "Customer Support",
+    "processName": "Support Case Abundance",
+    "accessUrl": "https://registry.mydomain.com/processing/histogram",
+    "requestKey": {
+      "key": "a9efa869-5824-414e-97dd-52189bc23e06"
+    },
+    "state": "DEMO",
+    "sourceDetailDto": {
+      "key": "a9efa869-5824-414e-97dd-52189bc23e00",
+      "proxyHost": "myProxy.nowhere.com",
+      "proxyPort": 666,
+      "basicAuthUsername": "basiAuthSecretUser",
+      "basicAuthPassword": "myuSecretbasicAuthPwd",
+      "headers": [
+        {
+          "name": "mySpecialheader1",
+          "value": "234feffwefsdf"
+        },
+        {
+          "name": "mySpecialheader2",
+          "value": "234fefEEwefsdf"
+        }
+      ]
+    }
+  },
+  {
+    "domain": "Finance",
+    "department": "Customer Soothing Operations",
+    "processName": "Customer Psychology Support",
+    "accessUrl": "https://registry.mydomain.com/application/histogram",
+    "requestKey": {
+      "key": "a9efa869-5824-414e-97dd-52189bc23e07"
+    },
+    "state": "DEMO",
+    "sourceDetailDto": {
+      "key": "a9efa869-5824-414e-97dd-52189bc23e00",
+      "proxyHost": "myProxy.nowhere.com",
+      "proxyPort": 666,
+      "basicAuthUsername": "basiAuthSecretUser",
+      "basicAuthPassword": "myuSecretbasicAuthPwd",
+      "headers": [
+        {
+          "name": "mySpecialheader1",
+          "value": "234feffwefsdf"
+        },
+        {
+          "name": "mySpecialheader2",
+          "value": "234fefEEwefsdf"
+        }
+      ]
+    }
+  },
+  {
+    "domain": "Finance",
+    "department": "Human Resources",
+    "processName": "The Agile Synergy Carreer Program",
+    "accessUrl": "https://registry.mydomain.com/application/histogram",
+    "requestKey": {
+      "key": "a9efa869-5824-414e-97dd-52189bc23e08"
+    },
+    "state": "DEMO",
+    "sourceDetailDto": {
+      "key": "a9efa869-5824-414e-97dd-52189bc23e00",
+      "proxyHost": "myProxy.nowhere.com",
+      "proxyPort": 666,
+      "basicAuthUsername": "basiAuthSecretUser",
+      "basicAuthPassword": "myuSecretbasicAuthPwd",
+      "headers": [
+        {
+          "name": "mySpecialheader1",
+          "value": "234feffwefsdf"
+        },
+        {
+          "name": "mySpecialheader2",
+          "value": "234fefEEwefsdf"
+        }
+      ]
+    }
+  },
+  {
+    "domain": "Finance",
+    "department": "International Business",
+    "processName": "Customer Goodbye Acceptance",
+    "accessUrl": "https://registry.mydomain.com/application/histogram",
+    "requestKey": {
+      "key": "a9efa869-5824-414e-97dd-52189bc23e09"
+    },
+    "state": "DEMO",
+    "sourceDetailDto": {
+      "key": "a9efa869-5824-414e-97dd-52189bc23e00",
+      "proxyHost": "myProxy.nowhere.com",
+      "proxyPort": 666,
+      "basicAuthUsername": "basiAuthSecretUser",
+      "basicAuthPassword": "myuSecretbasicAuthPwd",
+      "headers": [
+        {
+          "name": "mySpecialheader1",
+          "value": "234feffwefsdf"
+        },
+        {
+          "name": "mySpecialheader2",
+          "value": "234fefEEwefsdf"
+        }
+      ]
+    }
+  },
+  {
+    "domain": "Product Development",
+    "department": "Research and Development",
+    "processName": "Platforms Outside Space And Time",
+    "accessUrl": "https://registry.mydomain.com/notification/histogram",
+    "requestKey": {
+      "key": "a9efa869-5824-414e-97dd-52189bc23e10"
+    },
+    "state": "DEMO",
+    "sourceDetailDto": {
+      "key": "a9efa869-5824-414e-97dd-52189bc23e00",
+      "proxyHost": "myProxy.nowhere.com",
+      "proxyPort": 666,
+      "basicAuthUsername": "basiAuthSecretUser",
+      "basicAuthPassword": "myuSecretbasicAuthPwd",
+      "headers": [
+        {
+          "name": "mySpecialheader1",
+          "value": "234feffwefsdf"
+        },
+        {
+          "name": "mySpecialheader2",
+          "value": "234fefEEwefsdf"
+        }
+      ]
+    }
+  },
+  {
+    "domain": "Product Development",
+    "department": "Information Systems",
+    "processName": "System Halting",
+    "accessUrl": "https://registry.mydomain.com/notification/histogram",
+    "requestKey": {
+      "key": "a9efa869-5824-414e-97dd-52189bc23e11"
+    },
+    "state": "DEMO",
+    "sourceDetailDto": {
+      "key": "a9efa869-5824-414e-97dd-52189bc23e00",
+      "proxyHost": "myProxy.nowhere.com",
+      "proxyPort": 666,
+      "basicAuthUsername": "basiAuthSecretUser",
+      "basicAuthPassword": "myuSecretbasicAuthPwd",
+      "headers": [
+        {
+          "name": "mySpecialheader1",
+          "value": "234feffwefsdf"
+        },
+        {
+          "name": "mySpecialheader2",
+          "value": "234fefEEwefsdf"
+        }
+      ]
+    }
+  },
+  {
+    "domain": "Product Development",
+    "department": "Information systems",
+    "processName": "System Evaluation",
+    "accessUrl": "http://localhost:7777/process3",
+    "requestKey": {
+      "key": "a9efa869-5824-414e-97dd-52189bc23e12"
+    },
+    "state": "DEMO",
+    "sourceDetailDto": {
+      "key": "a9efa869-5824-414e-97dd-52189bc23e00"
+    }
+  },
+  {
+    "domain": "Support",
+    "department": "Customer Support",
+    "processName": "Support Case Flopping",
+    "accessUrl": "http://localhost:7777/process2",
+    "requestKey": {
+      "key": "a9efa869-5824-414e-97dd-52189bc23e13"
+    },
+    "state": "DEMO",
+    "sourceDetailDto": {
+      "key": "a9efa869-5824-414e-97dd-52189bc23e13"
+    }
+  },
+  {
+    "domain": "Support",
+    "department": "Customer Support",
+    "processName": "Support Personal Support",
+    "accessUrl": "https://xeno-canto.org/api/2/recordings?query=cnt:brazil",
+    "requestKey": {
+      "key": "a9efa869-5824-414e-97dd-52188bc23a13"
+    },
+    "state": "DEMO",
+    "sourceDetailDto": {
+      "key": "a9efa869-5824-414e-97dd-52188bc23a13"
+    }
+  },
+  {
+    "domain": "Finance",
+    "department": "Board Stuff",
+    "processName": "The Teachings Of Denail",
+    "accessUrl": "http://localhost:7777/process1",
+    "requestKey": {
+      "key": "a9efa869-5824-414e-97dd-52188bc23f13"
+    },
+    "state": "DEMO",
+    "sourceDetailDto": {
+      "key": "a9efa869-5824-414e-97dd-52188bc23f13"
+    }
+  }
+]

@@ -1,0 +1,94 @@
+.tableCell {
+    border-top: 1px solid #b0c3f6;
+    border-right: 1px solid #b0c3f6;
+    padding-top: 1.0em;
+    padding-bottom: 15px;
+    max-width: 250px !important;
+    min-width: 250px !important;
+    padding-left: 10px;
+    padding-right: 0;
+    margin: 0;
+    word-wrap: break-word;
+    font-weight: normal;
+    text-align: left;
+    letter-spacing: -1px;
+    line-height: 1.0em;
+    font-size: 1.0em;
+}
+.tableCellMinus {
+    max-width: 70px !important;
+    min-width: 70px !important;
+}
+.tableOuter {
+    border-left: 1px solid #b0c3f6;
+    overflow: hidden;
+}
+.tableHeading {
+ font-weight: bold;
+    background: -webkit-gradient(linear, left top, left bottom, from(#8e0ee3), to(rgba(61, 94, 245, 0.55))) fixed !important;
+}
+
+.tableLastLine {
+    border-top: 1px solid #b0c3f6;
+    max-width: 250px !important;
+    min-width: 250px !important;
+    margin: 0;
+    border-collapse: collapse;
+}
+.selectableRow:hover {
+    background: -webkit-gradient(linear, left top, left bottom, from(#5ca0e3), to(rgba(61, 94, 245, 0.55))) fixed !important;
+    width: fit-content;
+}
+
+.minusLine {
+    border-top: 1px solid #b0c3f6;
+    max-width: 70px !important;
+    min-width: 70px !important;
+    margin: 0;
+    border-collapse: collapse;
+}
+
+.minusHill {
+    margin-left: 20%;
+    color: #bfc5ba;
+    border: 1px #3b038f solid;
+    border-radius: 6px;
+    padding: 6px;
+    box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+    background: -webkit-linear-gradient(#312404, #376ee3);
+}
+
+.minusHill:hover {
+    color: #042d6b;
+    border: 1px solid #b0c3f6;
+    box-shadow: rgb(0, 6, 12) 0px 20px 30px -5px;
+    background: -webkit-gradient(linear, left top, left bottom, from(#f2f5f8), to(rgba(196, 205, 246, 0.55))) fixed !important;
+}
+
+.disabledMinusButtonDisabled {
+    margin-left: 20%;
+    color: #bfc5ba;
+    border: 1px #3b038f solid;
+    border-radius: 6px;
+    padding: 6px;
+    box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+    background: -webkit-linear-gradient(#6b0fa8, #79298a);
+}
+
+.disabledMinus {
+    color: #aabaf5 !important;
+}
+
+.noSourcesText{
+    padding-left: 0%;
+    text-align: left;
+    font-size: 3.8em;
+    font-weight: lighter;
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.15;
+    margin: 0;
+    letter-spacing: -5px;
+    background: -webkit-linear-gradient(#e80923, #f3934f);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}

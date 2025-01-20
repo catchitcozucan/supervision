@@ -1,0 +1,57 @@
+logging:
+    level:
+        org:
+           springframework:
+              web: INFO
+              controllers: INFO
+           hibernate: WARN
+server:
+    port: 8080
+    servlet:
+        contextPath: /catchitsupervision
+        session:
+            cookie:
+                name: catchitsupervision
+                max-age: 600
+                secure: true
+        encoding:
+            charset: UTF-8
+
+spring:
+    datasource:
+        hikari:
+            schema: supervision
+        password: catchit
+        url: jdbc:postgresql://localhost:5432/catchit
+        username: catchit
+    flyway:
+        baseline-on-migrate: true
+        baseline-version: '0'
+    jpa:
+        hibernate:
+            ddl-auto: validate
+        properties:
+            hibernate:
+                dialect: org.hibernate.dialect.PostgreSQLDialect
+                format_sql: true
+                jdbc:
+                    lob:
+                        non_contextual_creation: true
+                    time_zone: UTC
+    mvc:
+        converters:
+            preferred-json-mapper: gson
+catchit:
+        hierarchy: domain.department # domain.department or domain.system or environment.system would common examples to use
+        basicAuthAesKey: 2v9669413c169e30b65kal8619167h61
+        demoResource: /sources.json
+        corsAllowedHosts: '*'
+jakarta:
+    net:
+        ssl:
+            keyStore: '/cert/keystore.p12'
+            keyStoreType: 'PKCS12'
+            keyStorePassword: 'foo123'
+            trustStore: '/cert/truststore.jks'
+            trustStoreType: 'JKS'
+            trustStorePassword: 'foo123'

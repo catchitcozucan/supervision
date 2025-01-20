@@ -1,0 +1,10 @@
+.subtitles{
+    color: #f6e905;
+    font-size: 1.7em;
+    font-weight: lighter;
+    -webkit-font-smoothing: antialiased;
+    letter-spacing: 5px;
+    font-family: 'DejaVu Sans', sans-serif, Sans, 'Helvetica Neue';
+    width: 880px;
+    text-align: right;
+}

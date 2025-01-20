@@ -1,0 +1,624 @@
+html {
+    height: 100%;
+    box-sizing: border-box;
+    font-size: 10px;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
+body {
+    composes: gradient;
+    margin: 0;
+    padding-bottom: 6rem;
+    background-color: #F2FB7F;
+    overflow-y: hidden;
+    overflow-x: hidden;
+    font-weight: lighter;
+    -webkit-font-smoothing: antialiased;
+    font-family: 'DejaVu Sans', sans-serif, Sans, 'Helvetica Neue';
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+
+@keyframes fadein {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Firefox < 16 */
+@-moz-keyframes fadein {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Safari, Chrome and Opera > 12.1 */
+@-webkit-keyframes fadein {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Internet Explorer */
+@-ms-keyframes fadein {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Opera < 12.1 */
+@-o-keyframes fadein {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+#containermain {
+    -webkit-animation: fadein 3s; /* Safari, Chrome and Opera > 12.1 */
+    -moz-animation: fadein 3s; /* Firefox < 16 */
+    -ms-animation: fadein 3s; /* Internet Explorer */
+    -o-animation: fadein 3s; /* Opera < 12.1 */
+    animation: fadein 3s;
+}
+
+input, textarea, button {
+    font-family: inherit
+}
+
+tr, td {
+    vertical-align: middle;
+    height: 70px;
+    padding: 0;
+}
+
+table {
+    border: none;
+}
+
+/* unvisited link */
+a:link {
+    color: #161cef;
+}
+
+/* visited link */
+a:visited {
+    color: #8111d6;
+}
+
+/* mouse over link */
+a:hover {
+    color: #28282f;
+}
+
+/* selected link */
+a:active {
+    color: #ef8416;
+}
+
+.boxShadow {
+    box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+}
+
+.gradient {
+    background: -webkit-gradient(linear, left top, left bottom, from(#030115), to(rgba(59, 6, 213, 0.55))) fixed !important;
+    height: 4000px;
+}
+
+.App {
+    overflow: hidden;
+}
+
+.stdColors {
+    color: #FDF4B9FF;
+    text-align: left;
+    padding-left: 5px;
+}
+
+.stdColorsPie {
+    color: #FDF4B9FF;
+    text-align: left;
+}
+
+.graphPadding {
+    margin-right: 6%;
+    margin-left: 2%;
+    display: flex;
+    height: 48vmin;
+    width: fit-content;
+}
+
+.graphPaddingBigGraph {
+    margin-right: 6%;
+    margin-left: 14% !important;
+    display: inline-table;
+    height: 72vmin !important;
+    width: 1450px;
+    padding-left: 9% !important;
+    padding-right: 9% !important;
+}
+
+.App-logo {
+    height: 40vmin;
+    pointer-events: none;
+}
+
+.styledBg {
+    max-width: 100%;
+    min-width: 100%;
+    margin: 0;
+    padding: 0px;
+}
+
+.App-header {
+    composes: stdColors;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+}
+
+.simpleBorder {
+    border: 1px solid rgba(98, 87, 63, 0.67);
+    border-radius: 30px;
+    padding: 15px;
+}
+
+.titleStyleeMain {
+    text-align: right;
+    font-size: 5.8em;
+    font-weight: lighter;
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.15;
+    margin: 0;
+    letter-spacing: -5px;
+}
+
+.hierarchy {
+    position: fixed;
+    left: 39%;
+    text-align: center;
+    font-size: 2.6em;
+    font-weight: lighter;
+    -webkit-font-smoothing: antialiased;
+    line-height: 2.15;
+    margin: 0;
+    letter-spacing: -2px;
+    color: #fded03;
+}
+
+.textItemPadding {
+    padding-left: 10px;
+    padding-top: 6px;
+}
+
+.roundz {
+    composes: stdColors;
+    border-radius: 14px;
+    padding: 13px;
+}
+
+.hoverme:hover {
+    box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+    background: linear-gradient(to left, rgba(110, 10, 168, 0), rgb(127, 114, 241));
+    color: #d8deee;
+}
+
+.noselect {
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Old versions of Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none;
+    user-drag: none;
+    -webkit-user-drag: none;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+
+.processingNumber {
+    font-sise: 1.3em;
+    color: #7bf1e0;
+    font-weight: normal;
+}
+
+.failedNumber {
+    font-sise: 1.3em;
+    color: #f3363d;
+    font-weight: normal;
+}
+
+.finishedNumber {
+    font-sise: 1.3em;
+    color: #60f317;
+    font-weight: normal;
+}
+
+.finishedPercent {
+    font-sise: 1.3em;
+    color: #e8ea91;
+    font-weight: normal;
+}
+
+.column-left::-webkit-scrollbar {
+    width: 12px;
+}
+
+.column-left::-webkit-scrollbar-track {
+    background-color: rgb(114, 17, 124);
+    border-radius: 12px;
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+
+.column-left::-webkit-scrollbar-thumb {
+    background-color: rgb(96, 11, 114);
+    border-radius: 12px;
+}
+
+.textColumn {
+    scroll-behavior: smooth;
+    composes: boxShadow;
+    color: #75F17FFF;
+    paddingTop: 10px;
+    paddingBottom: 10px;
+    margin: 4px;
+    border: 1px solid rgba(98, 87, 63, 0.67);
+    box-shadow: rgb(115, 92, 117) 0px 10px 15px -5px;
+    border-radius: 14px;
+    text-align: right;
+    font-size: 1em;
+    font-weight: lighter;
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.15;
+    margin: 0;
+    letter-spacing: 2px;
+}
+
+.textBox {
+    flex: 0 0 auto;
+    max-width: 450px;
+    text-align: left;
+    font-size: 2em;
+    font-weight: lighter;
+    -webkit-font-smoothing: antialiased;
+    font-family: 'DejaVu Sans', sans-serif, Sans;
+    line-height: 1.5;
+    margin: 0;
+    padding: 10px;
+    letter-spacing: -1px;
+}
+
+.textBoxAutoplay {
+    text-align: right;
+    font-size: 0.70em;
+    font-weight: lighter;
+    -webkit-font-smoothing: antialiased;
+    font-family: 'DejaVu Sans', sans-serif, Sans;
+    line-height: 1.4;
+    padding: 0px;
+    letter-spacing: -2px;
+    margin-right: -43px;
+    position: fixed;
+    top: 86%;
+    left: 94%;
+}
+
+.column-rest {
+    composes: stdColors;
+    width: 100%;
+    padding-left: 40px;
+    padding-top: 30px;
+    font-size: calc(10px + 2vmin);
+}
+
+.App-link {
+    color: #61dafb;
+}
+
+/* for mobile type devices */
+@media only screen and (max-width: 1026px) {
+    .hierarchy {
+        position: fixed !important;
+        left: 45px !important;
+        text-align: left !important;
+        font-size: 2.1em;
+        top: 238px;
+        line-height: 0.75;
+        margin-bottom: 30px;
+    }
+    .textBoxAutoplay {
+        margin-right: 0px !important;
+        position: absolute !important;
+        top: 128px !important;
+        left: -200% !important;
+    }
+    .titleStyleeMain {
+        text-align: center !important;
+        margin-top: 50px !important;
+    }
+    .errorBox {
+        position: absolute;
+        left: 0;
+        top: 244px !important;
+        text-align: left !important;
+        font-size: 2.8em !important;
+        line-height: 0.75 !important;
+        letter-spacing: -1px !important;
+    }
+    .hideForMobile {
+        display: none !important;
+    }
+    .root {
+        max-width: 100%;
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+    .slotter {
+        padding-left: 8%;
+        width: 78% !important;
+    }
+    .errorBoxEmpty{
+        margin-left: 10px !important;
+    }
+    .configBox {
+        color: #FDF4B9FF;
+        padding-left: 11%;
+        padding-top: 4px;
+        padding-bottom: 4px;
+        font-size: 3.8em;
+        line-height: 1.8;
+    }
+    .graphPadding {
+        padding-left: 3px !important;
+        min-width: fit-content !important;
+        min-height: fit-content !important;
+    }
+    .nollettnollMobile {
+        max-width: 92% !important;
+    }
+}
+
+/* for BIGGER screens */
+@media only screen and (min-width: 2560px) {
+    .errorBox {
+        padding-left: 22%;
+        padding-right: 15%;
+        text-align: right;
+        font-size: 5.8em;
+        font-weight: lighter;
+        -webkit-font-smoothing: antialiased;
+        line-height: 1.15;
+        margin: 0;
+        letter-spacing: -5px;
+        background: -webkit-linear-gradient(#e80923, #f3934f);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+    .errorBoxEmpty{
+        padding-right: 73%;
+    }
+
+    .subtitles{
+        width: 1254px !important;
+        padding-top: 21px;
+    }
+
+    .stdColorsBigGraph{
+        display: inline-block;
+        position: absolute;
+        top: 14% !important;
+        left: 26% !important;
+    }
+
+    .hierarchy {
+        left: 45%;
+    }
+
+    .column-left {
+        composes: stdColors;
+        padding-left: 20px;
+        overflow-y: auto;
+        min-height: 52vh;
+        max-height: 43%;
+    }
+
+    .configBox {
+        color: #FDF4B9FF;
+        padding-left: 11%;
+        padding-top: 4px;
+        padding-bottom: 4px;
+        font-size: 3.8em;
+        line-height: 1.8;
+    }
+
+    .graphPaddingBig {
+        height: 58vmin !important;
+        width: fit-content;
+    }
+}
+
+/* for sort of std laptop */
+@media (max-width: 1920px) {
+    .errorBox {
+        padding-left: 3%;
+        text-align: right;
+        font-size: 5.8em;
+        font-weight: lighter;
+        -webkit-font-smoothing: antialiased;
+        line-height: 1.15;
+        margin: 0;
+        letter-spacing: -5px;
+        background: -webkit-linear-gradient(#e80923, #f3934f);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    .errorBoxEmpty{
+        padding-right: 67%;
+    }
+
+    .column-left {
+        composes: stdColors;
+        padding-left: 20px;
+        overflow-y: auto;
+        min-height: 52vh;
+        max-height: 43%;
+    }
+
+    .configBox {
+        position: absolute;
+        top: 60px;
+        color: #FDF4B9FF;
+        padding-left: 8%;
+        padding-top: 4px;
+        padding-bottom: 4px;
+        font-size: 2.1em;
+        line-height: 1.8;
+    }
+
+    .graphPaddingBigGraph {
+        height: 64vmin !important;
+        width: fit-content;
+    }
+}
+
+/* The button */
+.orangeButton {
+    align-items: center;
+    appearance: none;
+    background-clip: padding-box;
+    background-color: initial;
+    background-image: none;
+    border-style: none;
+    box-sizing: border-box;
+    font-weight: lighter;
+    letter-spacing: -2px;
+    font-family: 'DejaVu Sans', sans-serif, Sans, 'Helvetica Neue';
+    -webkit-font-smoothing: antialiased;
+    color: #FDF4B9FF;
+    cursor: pointer;
+    display: inline-block;
+    flex-direction: row;
+    flex-shrink: 0;
+    justify-content: center;
+    margin: 0;
+    outline: none;
+    overflow: visible;
+    pointer-events: auto;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    text-transform: none;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    vertical-align: middle;
+    width: auto;
+    word-break: keep-all;
+    z-index: 0;
+}
+
+@media (min-width: 768px) {
+    .orangeButton {
+        padding: 19px 32px;
+    }
+}
+
+@media only screen and (min-width: 2560px) {
+    .orangeButton {
+        padding: 16px 37px;
+    }
+}
+
+.orangeButton:before,
+.orangeButton:after {
+    border-radius: 25px;
+}
+
+.orangeButton:before {
+    background-image: linear-gradient(92.83deg, #ff7426 0, #f93a13 100%);
+    content: "";
+    display: block;
+    height: 100%;
+    left: 0;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: -2;
+}
+
+.orangeButton:after {
+    background-color: initial;
+    background-image: linear-gradient(#541a0f 0, #0c0d0d 100%);
+    bottom: 4px;
+    content: "";
+    display: block;
+    left: 4px;
+    overflow: hidden;
+    position: absolute;
+    right: 4px;
+    top: 4px;
+    transition: all 100ms ease-out;
+    z-index: -1;
+}
+
+.orangeButton:hover:not(:disabled):before {
+    background: linear-gradient(92.83deg, rgb(255, 116, 38) 0%, rgb(249, 58, 19) 100%);
+}
+
+.orangeButton:hover:not(:disabled):after {
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: 0;
+    transition-timing-function: ease-in;
+    opacity: 0;
+}
+
+.orangeButton:active:not(:disabled) {
+    color: #ccc;
+}
+
+.orangeButton:active:not(:disabled):before {
+    background-image: linear-gradient(0deg, rgba(0, 0, 0, .2), rgba(0, 0, 0, .2)), linear-gradient(92.83deg, #ff7426 0, #f93a13 100%);
+}
+
+.orangeButton:active:not(:disabled):after {
+    background-image: linear-gradient(#541a0f 0, #0c0d0d 100%);
+    bottom: 4px;
+    left: 4px;
+    right: 4px;
+    top: 4px;
+}
+
+.orangeButton:disabled {
+    cursor: default;
+    opacity: .24;
+}
