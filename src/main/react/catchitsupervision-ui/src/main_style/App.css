@@ -429,6 +429,13 @@ a:active {
         padding-top: 21px;
     }
 
+    .textBox {
+        max-width: 750px;
+        font-size: 2.2em;
+        line-height: 1.6;
+        padding-left: 28px;
+    }
+
     .stdColorsBigGraph{
         display: inline-block;
         position: absolute;
