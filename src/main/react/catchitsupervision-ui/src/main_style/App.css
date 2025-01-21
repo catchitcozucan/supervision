@@ -348,7 +348,7 @@ a:active {
         left: 45px !important;
         text-align: left !important;
         font-size: 2.1em;
-        top: 231px;
+        top: 230px;
         line-height: 0.75;
         margin-bottom: 30px;
     }
@@ -365,7 +365,7 @@ a:active {
     .errorBox {
         position: absolute;
         left: 0;
-        top: 241px !important;
+        top: 248px !important;
         text-align: left !important;
         font-size: 2.8em !important;
         line-height: 0.75 !important;
