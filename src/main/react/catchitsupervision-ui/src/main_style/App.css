@@ -348,7 +348,7 @@ a:active {
         left: 45px !important;
         text-align: left !important;
         font-size: 2.1em;
-        top: 238px;
+        top: 232px;
         line-height: 0.75;
         margin-bottom: 30px;
     }
@@ -365,7 +365,7 @@ a:active {
     .errorBox {
         position: absolute;
         left: 0;
-        top: 244px !important;
+        top: 246px !important;
         text-align: left !important;
         font-size: 2.8em !important;
         line-height: 0.75 !important;
@@ -509,9 +509,15 @@ a:active {
         line-height: 1.8;
     }
 
-    .graphPaddingBigGraph {
+    .graphPadding {
         height: 64vmin !important;
         width: fit-content;
+        margin-left: 130px;
+    }
+
+    .subtitles{
+        width: 958px !important;
+        padding-top: 1px;
     }
 }
 
