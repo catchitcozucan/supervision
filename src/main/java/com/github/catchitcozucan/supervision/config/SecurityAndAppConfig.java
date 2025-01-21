@@ -23,7 +23,7 @@ import com.github.catchitcozucan.core.impl.startup.NumberOfTimeUnits;
 import com.github.catchitcozucan.core.interfaces.CatchItConfig;
 import com.github.catchitcozucan.core.interfaces.LogConfig;
 import com.github.catchitcozucan.core.interfaces.PoolConfig;
-import com.github.catchitcozucan.supervision.controllers.RestExceptionHandler;
+import com.github.catchitcozucan.supervision.exception.RestExceptionHandler;
 import com.github.catchitcozucan.supervision.exception.CatchitSupervisionRuntimeException;
 import com.github.catchitcozucan.supervision.service.UserService;
 import com.github.catchitcozucan.supervision.start.CatchitSupervisionApplication;
@@ -53,7 +53,7 @@ import java.util.concurrent.TimeUnit;
 @EnableWebSecurity(debug = false)
 @EnableMethodSecurity(securedEnabled = false, jsr250Enabled = true)
 @Import({GsonConfig.class, FlywayConfig.class, RestExceptionHandler.class, HttpClientConfig.class})
-@ComponentScan(basePackages = {"com.github.catchitcozucan.supervision.repository", "com.github.catchitcozucan.supervision.service", "com.github.catchitcozucan.supervision.controllers"})
+@ComponentScan(basePackages = {"com.github.catchitcozucan.supervision.repository", "com.github.catchitcozucan.supervision.service", "com.github.catchitcozucan.supervision.controllers", "com.github.catchitcozucan.supervision.exception"})
 public class SecurityAndAppConfig {
     private static final int NUMBER_OF_THREADS_IN_TASK_POOL = 10;
     private static final String COULD_NOT_FIND_USABLE_LOG_DIRECTORY = "Could not find usable log directory!";

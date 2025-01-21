@@ -15,11 +15,8 @@
  *    whether in an action of contract, tort or otherwise, arising from, out of or
  *    in connection with the software or the use or other dealings in the software.
  */
-package com.github.catchitcozucan.supervision.controllers;
+package com.github.catchitcozucan.supervision.exception;
 
-import com.github.catchitcozucan.supervision.exception.BadRequestException;
-import com.github.catchitcozucan.supervision.exception.CatchitSupervisionRuntimeException;
-import com.github.catchitcozucan.supervision.exception.ForbiddenRequestException;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpStatus;

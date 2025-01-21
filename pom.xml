@@ -211,7 +211,7 @@
                             <mapEnum>asEnum</mapEnum>
                             <nonConstEnums>true</nonConstEnums>
                             <classesImplementingInterfaces>false</classesImplementingInterfaces>
-                            <outputFile>src/main/react/catchitsupervision-ui/src/generated/api.ts</outputFile>
+                            <outputFile>${frontend-src-dir}/src/generated/api.ts</outputFile>
                         </configuration>
                     </plugin>
                 </plugins>
@@ -322,6 +322,33 @@
                         </exclude>
                     </excludes>
                 </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>build-info</goal>
+                        </goals>
+                        <configuration>
+                            <additionalProperties>
+                                <project.build.sourceEncoding>${project.build.sourceEncoding}</project.build.sourceEncoding>
+                                <project.build.sourceEncoding>${project.build.sourceEncoding}</project.build.sourceEncoding>
+                                <maven.compiler.source>${maven.compiler.source}</maven.compiler.source>
+                                <maven.compiler.target>${maven.compiler.target}</maven.compiler.target>
+                                <java.version>${java.version}</java.version>
+                                <source.version>${source.version}</source.version>
+                                <java.source>${java.version}</java.source>
+                                <java.target>${java.version}</java.target>
+                                <developer.node.version>node-v22.12.0-linux-x64</developer.node.version>
+                                <developer.npm.version>10.9.0</developer.npm.version>
+                                <developer.maven.version>apache-maven-3.9.9</developer.maven.version>
+                                <custom.coder>Ola Aronsson</custom.coder>
+                                <custom.description>Supervision application for all your catchit processes</custom.description>
+                                <custom.copyright>This software is distributed licenced as Creative Commons License 4.0</custom.copyright>
+                                <custom.copyright.link>https://creativecommons.org/licenses/by/4.0</custom.copyright.link>
+                                <custom.developer.os>Fedora release 39</custom.developer.os>
+                            </additionalProperties>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
             <plugin>
                 <artifactId>maven-clean-plugin</artifactId>

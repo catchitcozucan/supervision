@@ -1,0 +1,188 @@
+.buildDialogScreen {
+    background: -webkit-gradient(linear, left top, left bottom, from(#080228), to(rgba(64, 19, 196, 0.55))) fixed !important;
+    box-shadow: rgb(23, 32, 42) 0px 20px 30px -10px;
+    position: absolute;
+    top: 4%;
+    height: 80%;
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    border: 2px solid #03030e;
+    width: 75% !important;
+    font-size: 1.6em;
+    color: #FAF10AFF;
+    border-radius: 10px;
+    background-color: #f4d2fa !important;
+    overflow: hidden;
+}
+
+.buildDialogButton {
+    font-weight: normal;
+}
+
+.buildDialogTitle {
+    font-size: 2.8em !important;
+    letter-spacing: 20px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-weight: lighter;
+    font-stretch: ultra-expanded;
+    padding: 10px;
+    color: #FAF10AFF;
+    border-bottom: 1px #011317 solid;
+    width: 100%;
+    background: -webkit-gradient(linear, left top, left bottom, from(#74a5ee), to(rgba(20, 88, 220, 0.55))) fixed !important;
+}
+
+.buildDialogTitleLeft {
+    text-align: left !important;
+    width: 90% !important;
+}
+
+.buildDialogCancelHeader {
+    color: #eef1f8;
+    margin-left: 4%;
+    font-weight: normal;
+    text-align: center;
+    border: 3px solid #748cc9;
+    letter-spacing: 0px;
+    line-height: 1.5em;
+    width: 4% !important;
+    border-radius: 10px;
+    font-size: 0.6em;
+    background: -webkit-gradient(linear, left top, left bottom, from(#cee5ff), to(rgba(151, 169, 248, 0.55))) fixed !important;
+    box-shadow: rgb(38, 57, 77) 0px 20px 30px -5px;
+    z-index: 2000;
+}
+
+.buildTitleStylee {
+    text-align: center;
+    font-size: 1.8em;
+    font-weight: lighter;
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.15;
+    margin: 0;
+    letter-spacing: 2px;
+}
+
+input {border:0;outline:0;}
+input:focus {outline:none!important;}
+
+.buildDialogCancelHeader:hover {
+    color: #042d6b;
+    border: 3px solid #b0c3f6;
+    box-shadow: rgb(0, 6, 12) 0px 20px 30px -5px;
+    background: -webkit-gradient(linear, left top, left bottom, from(#f2f5f8), to(rgba(196, 205, 246, 0.55))) fixed !important;
+}
+
+.buildDialogContent {
+    padding-top: 6%;
+    margin-top: 1%;
+    margin-bottom: 3%;
+    padding-bottom: 3%;
+    color: #FAF10AFF;
+    height: 100%;
+    z-index: -1000;
+    font-family: 'DejaVu Sans', sans-serif, Sans, 'Helvetica Neue';
+    font-size: 0.8em;
+    border: none !important;
+    font-weight: lighter;
+    -webkit-font-smoothing: antialiased;
+    line-height: 2.15;
+    margin: 0;
+    letter-spacing: -1px;
+}
+
+.licenselink:link {
+    color: #7ff6d6;
+}
+
+/* visited link */
+.licenselink:visited {
+    color: #88ed6c;
+}
+
+/* mouse over link */
+.licenselink:hover {
+    color: #ef0c2c;
+}
+
+/* selected link */
+.licenselink:active {
+    color: #ef8416;
+}
+
+
+
+
+.buildLicense {
+    padding-top: 40px;
+}
+
+.borderConentStyle {
+    text-align: left;
+    padding-left: 5%;
+}
+
+.buildDialogButtons {
+    margin-top: 4%;
+    padding-top: 4%;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    padding: 10px;
+    text-align: right;
+    border-top: 1px #0d1111 solid;
+    border-radius: 3px;
+    z-index: 4000;
+}
+
+/*   Open state of the dialog  */
+dialog[open] {
+    opacity: 1;
+    transform: scaleY(1);
+}
+
+/*   Closed state of the dialog   */
+dialog {
+    opacity: 0;
+    transform: scaleY(0);
+    transition: opacity 0.7s ease-out,
+    transform 0.7s ease-out,
+    overlay 0.7s ease-out allow-discrete,
+    display 0.7s ease-out allow-discrete;
+}
+
+/*   Before-open state  */
+/* Needs to be after the previous dialog[open] rule to take effect,
+    as the specificity is the same */
+@starting-style {
+    dialog[open] {
+        opacity: 0;
+        transform: scaleY(0);
+    }
+}
+
+/* Transition the :backdrop when the dialog modal is promoted to the top layer */
+.dialog::backdrop {
+    background-color: rgb(0 0 0 / 0%);
+    transition: display 0.7s allow-discrete,
+    overlay 0.7s allow-discrete,
+    background-color 0.7s;
+}
+
+dialog[open]::backdrop {
+    background-color: rgb(0 0 0 / 35%);
+}
+
+/* This starting-style rule cannot be nested inside the above selector
+because the nesting selector cannot represent pseudo-elements. */
+
+@starting-style {
+    dialog[open]::backdrop {
+        background-color: rgb(0 0 0 / 0%);
+    }
+}

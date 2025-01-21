@@ -36,6 +36,7 @@ import {LoginDialog} from "./components/dialog/LoginDialog";
 import {Switcher} from "./components/others/Switcher";
 import {doUntil, Runner, UISize} from "./uiTypes/utils";
 import './main_style/noSources.css'
+import {BuildDialog} from "./components/dialog/BuildDialog";
 
 function App() {
 
@@ -53,6 +54,7 @@ function App() {
     const [dialogIsVisible, setDialogIsVisible] = useState<boolean>(false);
     const [isAdminLoggedIn, setIsAdminLoggedIn] = useState<boolean>(false);
     const [loginDialogIsVisible, setLoginDialogIsVisible] = useState<boolean>(false);
+    const [buildDialogIsVisible, setBuildDialogIsVisible] = useState<boolean>(false);
     const [buttonText, setButtonText] = useState<string>('');
     const [selectedProcess, setSelectedProcess] = useState<DepartmentProcessSummary | undefined>(undefined)
     const [flipFailures, setFlipFailures] = useState<boolean>(false)
@@ -547,7 +549,8 @@ function App() {
                                           labelButton2={'Cancel'} showSources={true}
                                           onSaveSource={onSaveResources} onNoSourcesLeft={() => {
                                 if (autoPlayer) {
-                                    autoPlayer.doStuff = () => {}
+                                    autoPlayer.doStuff = () => {
+                                    }
                                 }
                                 playerRef.current?.click();
                             }}/>
@@ -558,9 +561,19 @@ function App() {
                                          onClickButton1={checkAdminIsLoggedIn}
                                          content={'Password :'} labelButton1={'Login'} labelButton2={'Cancel'}/>
                         }
+                        {buildDialogIsVisible &&
+                            <BuildDialog onClose={() => {
+                                setBuildDialogIsVisible(false);
+                            }} id={'buildDialog'}/>
+                        }
                     </div>
                     <Footer/>
                 </div>
+            <div className={'buildStuff'} id={'buildstuff'}>
+                <div id={'buildbutton'} onClick={() => {
+                    setBuildDialogIsVisible(true);
+                }} className="buildbutton hideForMobile">{'Build'}</div>
+            </div>
             </>
         </div>
     );

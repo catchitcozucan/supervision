@@ -57,17 +57,4 @@ public class HistogramTests {
             return null;
         }
     }
-
-    /*
-    public static Optional<InputStream> resourceToStream(Resource resource) {
-        try {
-            InputStream in = Thread.currentThread().getContextClassLoader()
-                    .getResource(resource.getFilename()).openConnection().getInputStream();
-            return Optional.of(in);
-        } catch (IOException e) {
-            log.error(String.format(String.format("Failed to load %s", resource.getFilename())), e);
-        }
-        return Optional.empty();
-    }
-*/
 }
