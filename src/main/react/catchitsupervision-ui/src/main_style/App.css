@@ -510,9 +510,10 @@ a:active {
     }
 
     .graphPaddingHisto {
-        height: 64vmin !important;
         width: fit-content;
+        height: 64vmin !important;
         margin-left: 130px;
+        padding-right: 70px;
     }
 
     .graphPadding {
