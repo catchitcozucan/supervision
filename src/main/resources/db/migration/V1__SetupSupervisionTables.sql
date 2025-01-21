@@ -66,7 +66,7 @@ CREATE TABLE supervision.detail_header
 CREATE TABLE supervision.source_response (
                                            id SERIAL PRIMARY KEY,
                                            version int4 NOT NULL default 0,
-                                           last_succ TIMESTAMP NOT NULL,
+                                           last_succ TIMESTAMP,
                                            touched TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
                                            last_exec_time varchar(255) NOT NULL,
                                            access_key UUID NOT NULL UNIQUE,

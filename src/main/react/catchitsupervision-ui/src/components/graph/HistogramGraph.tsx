@@ -209,7 +209,7 @@ export function HistogramGraph(props: HistograProps) {
                 </div>
                 :
                 <div className={'simpleBorder stdColors, boxShadow graphPaddingHisto'}>
-                    <canvas ref={chartRef} width="800px" height="560px" id={chartId}></canvas>
+                    <canvas ref={chartRef} width="840px" height="500px" id={chartId}></canvas>
                 </div>
             }
             <div className={'subtitles hideForMobile'}>{subTitle}</div>

@@ -61,7 +61,7 @@ public class SourcelResponseResultEntity {
     @Column(name = "state", columnDefinition = "varchar", nullable = false)
     private String state;
 
-    @Column(name = "histogram", columnDefinition = "text", nullable = false)
+    @Column(name = "histogram", columnDefinition = "text")
     private String histogramAsJson;
 
     public void override(SourcelResponseResultEntity sourceEntity, long execTime, Date newSuccess) {

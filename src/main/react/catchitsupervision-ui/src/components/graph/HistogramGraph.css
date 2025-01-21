@@ -4,7 +4,7 @@
     font-weight: lighter;
     -webkit-font-smoothing: antialiased;
     letter-spacing: 5px;
-    font-family: 'DejaVu Sans', sans-serif, Sans, 'Helvetica Neue';
+    font-family: Arial, 'DejaVu Sans', sans-serif, Sans, Helvetica;
     width: 880px;
     text-align: right;
 }

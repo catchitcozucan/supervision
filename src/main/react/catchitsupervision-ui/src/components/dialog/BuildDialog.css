@@ -85,7 +85,7 @@ input:focus {outline:none!important;}
     color: #FAF10AFF;
     height: 100%;
     z-index: -1000;
-    font-family: 'DejaVu Sans', sans-serif, Sans, 'Helvetica Neue';
+    font-family: Arial, 'DejaVu Sans', sans-serif, Sans, Helvetica;
     font-size: 0.8em;
     border: none !important;
     font-weight: lighter;

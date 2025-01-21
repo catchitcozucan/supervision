@@ -7,7 +7,6 @@ node
 node_modules
 package-lock.json
 /src/main/resources/static/**.*
-# exclude everything
 /src/main/resources/static/*
 
 # exception to the rule

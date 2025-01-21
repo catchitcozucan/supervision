@@ -19,7 +19,7 @@ body {
     overflow-x: hidden;
     font-weight: lighter;
     -webkit-font-smoothing: antialiased;
-    font-family: 'DejaVu Sans', sans-serif, Sans, 'Helvetica Neue';
+    font-family: Arial, 'DejaVu Sans', sans-serif, Sans, Helvetica;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
@@ -307,7 +307,7 @@ a:active {
     font-size: 2em;
     font-weight: lighter;
     -webkit-font-smoothing: antialiased;
-    font-family: 'DejaVu Sans', sans-serif, Sans;
+    font-family: Arial, 'DejaVu Sans', sans-serif, Sans;
     line-height: 1.5;
     margin: 0;
     padding: 10px;
@@ -319,7 +319,7 @@ a:active {
     font-size: 0.70em;
     font-weight: lighter;
     -webkit-font-smoothing: antialiased;
-    font-family: 'DejaVu Sans', sans-serif, Sans;
+    font-family: Arial, 'DejaVu Sans', sans-serif, Sans;
     line-height: 1.4;
     padding: 0px;
     letter-spacing: -2px;
@@ -511,7 +511,7 @@ a:active {
 
     .graphPaddingHisto {
         width: fit-content;
-        height: 64vmin !important;
+        height: 62vmin !important;
         margin-left: 130px;
         padding-right: 70px;
     }
@@ -538,7 +538,7 @@ a:active {
     box-sizing: border-box;
     font-weight: lighter;
     letter-spacing: -2px;
-    font-family: 'DejaVu Sans', sans-serif, Sans, 'Helvetica Neue';
+    font-family: Arial, 'DejaVu Sans', sans-serif, Sans, Helvetica;
     -webkit-font-smoothing: antialiased;
     color: #FDF4B9FF;
     cursor: pointer;
