@@ -660,3 +660,11 @@ a:active {
 .buildbutton:hover {
     background: linear-gradient(92.83deg, rgb(163, 36, 156) 0%, rgb(182, 11, 173) 100%);
 }
+
+/* for sort of big screens */
+@media only screen and (min-width: 2560px) {
+    .buildStuff {
+        top:91.5% !important;
+        left: 6px !important;
+    }
+}

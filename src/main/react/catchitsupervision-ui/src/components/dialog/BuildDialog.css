@@ -114,9 +114,6 @@ input:focus {outline:none!important;}
     color: #ef8416;
 }
 
-
-
-
 .buildLicense {
     padding-top: 40px;
 }
@@ -184,5 +181,13 @@ because the nesting selector cannot represent pseudo-elements. */
 @starting-style {
     dialog[open]::backdrop {
         background-color: rgb(0 0 0 / 0%);
+    }
+}
+
+/* for sort of big screens */
+@media only screen and (min-width: 2560px) {
+    .buildDialogCancelHeader {
+        margin-left: 6% !important;
+        width: 3% !important;
     }
 }
