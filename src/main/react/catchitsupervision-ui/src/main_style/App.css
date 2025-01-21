@@ -509,10 +509,15 @@ a:active {
         line-height: 1.8;
     }
 
-    .graphPadding {
+    .graphPaddingHisto {
         height: 64vmin !important;
         width: fit-content;
         margin-left: 130px;
+    }
+
+    .graphPadding {
+        height: 48vmin !important;
+        width: fit-content;
     }
 
     .subtitles{

@@ -208,7 +208,7 @@ export function HistogramGraph(props: HistograProps) {
                     <canvas ref={chartRef} width="1450px" height="882px" id={chartId}></canvas>
                 </div>
                 :
-                <div className={'simpleBorder stdColors, boxShadow graphPadding'}>
+                <div className={'simpleBorder stdColors, boxShadow graphPaddingHisto'}>
                     <canvas ref={chartRef} width="1380px" height="880px" id={chartId}></canvas>
                 </div>
             }
