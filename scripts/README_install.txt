@@ -52,14 +52,14 @@ presented with the demo view as you have not added any sources yet.
 configurations. The very first time you log in your admin password will be
 checked for validity. Default it crap (or it is 'admin') and you will be
 asked to provide a proper password to use. This password will be saved
-and then you will be automagically logged in. The sources are now available
-to you as you have an admin session running in your client.
+you will be automatically logged in. The sources are now available to you
+as you have an admin session running in your client.
 
 6. Click 'Sources' and the either edit one of the demo once by pointing it to
 an actual source. Test it with the 'Test' button so that you know that it
-works. Press 'Save' - you are now in a live view with your first actual
-process supervision running. Click 'Autoplay' in order to get automatic updates
-every fifth second or so.
+works. Press 'Save' - you are now in the live view of things with your first
+actual process supervision running. Click 'Autoplay' in order to get automatic
+updates every fifth second or so.
 
 Yup, that's pretty much it.
 
