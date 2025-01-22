@@ -368,6 +368,9 @@
                             <includes>
                                 <include>**/*.*</include>
                             </includes>
+                            <excludes>
+                                <exclude>.gitkeep</exclude>
+                            </excludes>
                             <followSymlinks>false</followSymlinks>
                         </fileset>
                     </filesets>
