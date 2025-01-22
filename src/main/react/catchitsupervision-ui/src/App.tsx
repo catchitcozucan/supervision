@@ -218,7 +218,7 @@ function App() {
 
     const checkAdminIsLoggedIn = () => {
         adminIsLoggedin().then(isLoggedIn => {
-            if (isLoggedIn.toString() === 'false') {
+            if (!isLoggedIn) {
                 setButtonText('Login');
                 setIsAdminLoggedIn(false);
             } else {
@@ -295,7 +295,6 @@ function App() {
                         <span className={'configBox'}>
                     {buttonText && buttonText.length > 0 &&
                         <button onClick={() => {
-                            checkAdminIsLoggedIn();
                             if (!isAdminLoggedIn) {
                                 setLoginDialogIsVisible(true);
                             } else {

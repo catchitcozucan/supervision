@@ -10,7 +10,7 @@
     justify-content: center;
     z-index: 1000;
     border: 2px solid #03030e;
-    width: 85% !important;
+    max-width: 85% !important;
     font-size: 1.6em;
     color: #FAF10AFF;
     border-radius: 10px;

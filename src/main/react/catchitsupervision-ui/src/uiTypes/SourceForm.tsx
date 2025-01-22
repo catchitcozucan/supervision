@@ -237,7 +237,7 @@ export const SourceForm = (props: SourceFormProps): JSX.Element => {
                                 </span>
                         <span className={'column'} style={!loading ? {
                                 marginTop: '0px',
-                                paddingLeft: '72%',
+                                paddingLeft: '71.6%',
                                 fontSize: '0.7em',
                                 textAlign: 'right'
                             } :
@@ -251,7 +251,7 @@ export const SourceForm = (props: SourceFormProps): JSX.Element => {
                         }>
                             {!loading && testResult &&
                                 <>
-                                    <span style={{textAlign: 'right', position: 'relative', right: '0%'}}>
+                                    <span style={{textAlign: 'right', position: 'relative', right: '1%'}}>
                                         <span style={{paddingLeft: '4%', margin: 0}}>
                                             <FontAwesomeIcon
                                                 style={testResult.state === State.AVAILABLE ? {'color': '#70ef05'} : {'color': '#ec1919'}}

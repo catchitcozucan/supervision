@@ -54,7 +54,6 @@ export function LoginDialog(props: LoginDialogProps) {
     }
 
     const toggleModalVisibility = (open?: boolean) => {
-
         if (open) {
             dialogRef.current?.showModal();
         } else if (dialogRef.current?.hasAttribute("open")) {
@@ -62,19 +61,6 @@ export function LoginDialog(props: LoginDialogProps) {
         } else {
             dialogRef.current?.showModal();
         }
-       /*
-        if (!dialogRef.current) {
-            return;
-        } else {
-            if (open) {
-                dialogRef.current?.showModal();
-            } else if (dialogRef.current?.hasAttribute("open")) {
-                dialogRef.current?.close();
-            } else {
-                dialogRef.current?.showModal();
-            }
-        }
-        */
     };
     useEffect(() => {
         setLoading(true);

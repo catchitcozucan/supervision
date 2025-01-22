@@ -64,16 +64,12 @@ export function SourceDialog(props: SourceDialogProps) {
     }
 
     const toggleModalVisibility = (open?: boolean) => {
-        if (!dialogRef.current) {
-            return;
+        if (open) {
+            dialogRef.current?.showModal();
+        } else if (dialogRef.current?.hasAttribute("open")) {
+            dialogRef.current?.close();
         } else {
-            if (open) {
-                dialogRef.current?.showModal();
-            } else if (dialogRef.current?.hasAttribute("open")) {
-                dialogRef.current?.close();
-            } else {
-                dialogRef.current?.showModal();
-            }
+            dialogRef.current?.showModal();
         }
     };
 
