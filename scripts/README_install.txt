@@ -25,23 +25,7 @@ Then just
 
 or however you do it usually.
 
-3. In your IDE, I use Intellij, startup the springboot application. The very
-first time it might not start but stop with the complaint
-
-***************************
-APPLICATION FAILED TO START
-***************************
-
-Description:
-
-Field buildProperties in com.github.catchitcozucan.supervision.controllers.BuildInfoController
-required a bean of type 'org.springframework.boot.info.BuildProperties' that could not be found.
-
-Then you just do
-
-> mvn package
-
-and the build props will now be available and it will start fine.
+3. In your IDE, I use Intellij, startup the springboot application.
 
 4. In your IDE set up a launcher for the react gui. I use a launcher of type
 'npm', target start, point out the package.json in the code's gui and tell
@@ -64,3 +48,22 @@ updates every fifth second or so.
 Yup, that's pretty much it.
 
 /Ola.
+
+--
+
+The _very_ first time it might not start but stop with the complaint
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Field buildProperties in com.github.catchitcozucan.supervision.controllers.BuildInfoController
+required a bean of type 'org.springframework.boot.info.BuildProperties' that could not be found.
+
+Then you just do
+
+> mvn package
+
+and the build props will now be available and it will start fine.
