@@ -25,7 +25,7 @@
     font-weight: normal;
     -webkit-font-smoothing: antialiased;
     line-height: 1.9cap;
-    font-family: 'DejaVu Sans, sans-serif, Sans, Helvetica;
+    font-family: 'DejaVu Sans', sans-serif, Sans, Helvetica;
 }
 
 .footer {
@@ -50,7 +50,7 @@
     font-weight: normal;
     -webkit-font-smoothing: antialiased;
     line-height: 1.9cap;
-    font-family: 'DejaVu Sans, sans-serif, Sans, Helvetica;
+    font-family: 'DejaVu Sans', sans-serif, Sans, Helvetica;
 }
 
 .tableNoSpace {
