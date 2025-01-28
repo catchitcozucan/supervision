@@ -37,7 +37,7 @@ export interface SupervisionFetcher {
     getHistogram(domain: string, department: string, processName: string, flipFailures: boolean, returnOnlyFailures: boolean): Promise<Histogram>; // get current histogram for a process that is a member os a group of processes
     inDemoMode(): Promise<boolean>
 
-    getSources(): Promise<SourceDto[]>
+    getSources(): Promise<SourceDto[] | string>
 
     getHierarchy(): Promise<string>
 
@@ -113,13 +113,13 @@ class Supervisionservice implements SupervisionFetcher {
         });
     }
 
-    getSources(): Promise<SourceDto[]> {
+    getSources(): Promise<SourceDto[] | string> {
         const url = URL_PREFIX + 'sources';
         return makeCall(url).then(resp => {
             if (resp.isOk && resp.response) {
                 return JSON.parse(resp.response) as SourceDto[];
             } else if (resp.httpCode === 403) {
-                throw new FetchError("NOT ALLOWED - YOU ARE NOT LOGGED IN!", resp);
+                return "NOT ALLOWED - YOU ARE NOT LOGGED IN!";
             } else {
                 throw new FetchError("getSources() FAILED!", resp);
             }
@@ -212,7 +212,7 @@ export function inDemoMode(): Promise<boolean> {
     return statisticServiceInstance.inDemoMode();
 }
 
-export function getSources(): Promise<SourceDto[]> {
+export function getSources(): Promise<SourceDto[] | string> {
     return statisticServiceInstance.getSources();
 }
 

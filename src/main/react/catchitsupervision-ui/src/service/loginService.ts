@@ -61,16 +61,14 @@ class LoginserviceImpl implements Loginservice {
         });
     }
 
-    async adminIsLoggedIn(): Promise<boolean | any> {
+    async adminIsLoggedIn(): Promise<boolean> {
         const url = URL_PREFIX + 'loggedin';
         return makeCall(url).then(resp => {
             if (resp.isOk && resp.response) {
                 const logginIn : LoggedInResponse = (JSON.parse(resp.response) as LoggedInResponse);
                 return logginIn.isLoggedIn;
             } else {
-
-                console.error("Request went bad " + resp.toString());
-                return '';
+                return false;
             }
         });
     }

@@ -62,6 +62,7 @@ export function LoginDialog(props: LoginDialogProps) {
             dialogRef.current?.showModal();
         }
     };
+
     useEffect(() => {
         setLoading(true);
         toggleModalVisibility(true);
@@ -74,7 +75,7 @@ export function LoginDialog(props: LoginDialogProps) {
             }
             setLoading(false);
         })
-    }, [props.labelButton1]);
+    }, []);
 
     return (
         <>

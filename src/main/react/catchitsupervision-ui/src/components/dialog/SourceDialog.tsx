@@ -81,34 +81,42 @@ export function SourceDialog(props: SourceDialogProps) {
 
     const reload = () => {
         getSources().then(resp => {
-            if (props.showSources) {
-                setSources(resp);
-                let usedUrls: string[] = [];
-                resp.forEach(r => {
-                    usedUrls.push(r.accessUrl);
-                })
-                setUtilizedUrls(usedUrls);
-            } else {
-                setMode(Mode.EDIT);
-            }
-            const formDataRaw: FormValue[] = [];
-            resp.forEach(s => {
-                toForm(s).forEach(e => {
-                    formDataRaw.push(e)
-                });
-            });
 
-            if (resp.length > 0) {
-                // sort it
-                const indexedArray = formDataRaw.map((item, index) => ({index, value: item}));
-                indexedArray.sort((a, b) => (a.value as FormValue).index - (b.value as FormValue).index);
-                const sortedvalues = indexedArray.map((item) => item.value);
-                setFormData(sortedvalues);
-                if (sortedvalues && sortedvalues.length > 0 && sortedvalues[0].key) {
-                    setDataKey(sortedvalues[0].key);
+            if (typeof resp === 'string') { // SESSION ENDED..
+                if (props.onClickButton2) {
+                    props.onClickButton2();
                 }
+                toggleModalVisibility();
             } else {
-                props.onNoSourcesLeft();
+                if (props.showSources) {
+                    setSources(resp);
+                    let usedUrls: string[] = [];
+                    resp.forEach(r => {
+                        usedUrls.push(r.accessUrl);
+                    })
+                    setUtilizedUrls(usedUrls);
+                } else {
+                    setMode(Mode.EDIT);
+                }
+                const formDataRaw: FormValue[] = [];
+                resp.forEach(s => {
+                    toForm(s).forEach(e => {
+                        formDataRaw.push(e)
+                    });
+                });
+
+                if (resp.length > 0) {
+                    // sort it
+                    const indexedArray = formDataRaw.map((item, index) => ({index, value: item}));
+                    indexedArray.sort((a, b) => (a.value as FormValue).index - (b.value as FormValue).index);
+                    const sortedvalues = indexedArray.map((item) => item.value);
+                    setFormData(sortedvalues);
+                    if (sortedvalues && sortedvalues.length > 0 && sortedvalues[0].key) {
+                        setDataKey(sortedvalues[0].key);
+                    }
+                } else {
+                    props.onNoSourcesLeft();
+                }
             }
         });
 
