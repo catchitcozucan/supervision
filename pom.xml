@@ -7,7 +7,7 @@
     <name>catchitcozucan.supervision</name>
     <description>supervision gui for catchitcozucan</description>
     <url>https://github.com/catchitcozucan/supervision</url>
-    <packaging>war</packaging>
+    <packaging>jar</packaging>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -289,26 +289,36 @@
                 </configuration>
             </plugin>
             <plugin>
+                <artifactId>maven-resources-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>position-react-build</id>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <phase>compile</phase>
+                        <configuration>
+                            <outputDirectory>${java-resource-dir}</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>${frontend-build-dir}</directory>
+                                    <filtering>false</filtering>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-war-plugin</artifactId>
+                <artifactId>maven-jar-plugin</artifactId>
                 <configuration>
-                    <failOnMissingWebXml>false</failOnMissingWebXml>
                     <archive>
                         <manifest>
                             <mainClass>${start-class}</mainClass>
                             <packageName>com.github.catchitcozucan.supervision</packageName>
                         </manifest>
                     </archive>
-
-                    <webResources>
-                        <!--copy resource file location-->
-                        <resource>
-                            <directory>${java-resource-dir}</directory>
-                        </resource>
-                    </webResources>
-                    <!--location for add file-->
-                    <webappDirectory>${project.build.directory}/classes</webappDirectory>
-
                 </configuration>
             </plugin>
             <plugin>

@@ -26,6 +26,7 @@ import com.github.catchitcozucan.supervision.exception.ForbiddenRequestException
 import com.github.catchitcozucan.supervision.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -33,41 +34,41 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/login")
 @Slf4j
+@RequiredArgsConstructor
 public class LoginController {
 
-    private static final String JSON_CHARSET_UTF_8 = "application/json; charset=UTF-8";
+	private static final String JSON_CHARSET_UTF_8 = "application/json; charset=UTF-8";
 
-    @Autowired
-    private UserService userService;
+	private final UserService userService;
 
-    @PutMapping(value = "/set", produces = JSON_CHARSET_UTF_8, consumes = JSON_CHARSET_UTF_8)
-    public UserAndHashedPassword create(@RequestBody Login login, HttpServletRequest request, HttpServletResponse response) {
-        try {
-            login.validate();
-            return userService.createPassword(login.getUserName(), login.getPassword(), request, response);
-        } catch (CatchitSupervisionRuntimeException exec) {
-            throw new BadRequestException(exec);
-        }
-    }
+	@PutMapping(value = "/set", produces = JSON_CHARSET_UTF_8, consumes = JSON_CHARSET_UTF_8)
+	public UserAndHashedPassword create(@RequestBody Login login, HttpServletRequest request, HttpServletResponse response) {
+		try {
+			login.validate();
+			return userService.createPassword(login.getUserName(), login.getPassword(), request, response);
+		} catch (CatchitSupervisionRuntimeException exec) {
+			throw new BadRequestException(exec);
+		}
+	}
 
-    @PostMapping(value = "/verify", produces = JSON_CHARSET_UTF_8, consumes = JSON_CHARSET_UTF_8)
-    public UserAndHashedPassword login(@RequestBody Login login, HttpServletRequest request, HttpServletResponse response) {
-        try {
-            login.validate();
-            return userService.verifyLogin(login.getUserName(), login.getPassword(), request, response);
-        } catch (CatchitSupervisionRuntimeException exec) {
-            log.warn("Login failed", exec);
-            throw new ForbiddenRequestException(exec);
-        }
-    }
+	@PostMapping(value = "/verify", produces = JSON_CHARSET_UTF_8, consumes = JSON_CHARSET_UTF_8)
+	public UserAndHashedPassword login(@RequestBody Login login, HttpServletRequest request, HttpServletResponse response) {
+		try {
+			login.validate();
+			return userService.verifyLogin(login.getUserName(), login.getPassword(), request, response);
+		} catch (CatchitSupervisionRuntimeException exec) {
+			log.warn("Login failed", exec);
+			throw new ForbiddenRequestException(exec);
+		}
+	}
 
-    @GetMapping(value = "/loggedin", produces = JSON_CHARSET_UTF_8)
-    public LoggedInResponse isLOggedIn(HttpServletRequest request, HttpServletResponse response) {
-        try {
-            return LoggedInResponse.builder().isLoggedIn(userService.thereIsAValidSession(request)).build();
-        } catch (CatchitSupervisionRuntimeException exec) {
-            throw new ForbiddenRequestException(exec);
-        }
-    }
+	@GetMapping(value = "/loggedin", produces = JSON_CHARSET_UTF_8)
+	public LoggedInResponse isLOggedIn(HttpServletRequest request, HttpServletResponse response) {
+		try {
+			return LoggedInResponse.builder().isLoggedIn(userService.thereIsAValidSession(request)).build();
+		} catch (CatchitSupervisionRuntimeException exec) {
+			throw new ForbiddenRequestException(exec);
+		}
+	}
 
 }

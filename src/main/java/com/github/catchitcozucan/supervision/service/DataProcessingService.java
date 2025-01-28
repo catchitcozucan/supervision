@@ -27,6 +27,7 @@ import com.github.catchitcozucan.supervision.repository.enteties.SourcelResponse
 import com.github.catchitcozucan.supervision.service.conversion.SourceResponseResultConversionService;
 import com.github.catchitcozucan.supervision.utils.json.GsonWrapper;
 import jakarta.annotation.PostConstruct;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -46,6 +47,7 @@ import static com.github.catchitcozucan.supervision.service.conversion.SourceCon
 @Transactional(propagation = Propagation.REQUIRED)
 @Service
 @Slf4j
+@RequiredArgsConstructor
 public class DataProcessingService {
 
     public static final String NO_DOMAIN = "NO_DOMAIN";
@@ -64,18 +66,12 @@ public class DataProcessingService {
     private String domainLabel;
     private String departmentLabel;
 
-    @Autowired
-    private SecurityAndAppConfig.CompletetelyInitiatedindicator completetelyInitiatedindicator;
-    @Autowired
-    private HistogramFetcher histogramFetcher;
-    @Autowired
-    private SourcesProvider sourcesProvider;
-    @Autowired
-    private SourcelResponseResultRepository sourcelResponseResultRepository;
-    @Autowired
-    private SourceResponseResultConversionService sourceResponseResultConversionService;
-    @Autowired
-    private GsonWrapper gson;
+    private final SecurityAndAppConfig.CompletetelyInitiatedindicator completetelyInitiatedindicator;
+    private final HistogramFetcher histogramFetcher;
+    private final SourcesProvider sourcesProvider;
+    private final SourcelResponseResultRepository sourcelResponseResultRepository;
+    private final SourceResponseResultConversionService sourceResponseResultConversionService;
+    private final GsonWrapper gson;
 
     @PostConstruct
     public void postConstruct() {

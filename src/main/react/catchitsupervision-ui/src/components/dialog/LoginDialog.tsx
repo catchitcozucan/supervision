@@ -19,6 +19,7 @@ import React, {useEffect, useRef, useState} from "react";
 import './LoginDialog.css';
 import {login, setAdminPasswordAndLogin} from "../../service/loginService";
 import {Spinner} from "../spinner/Spinner";
+import {randomInt} from "node:crypto";
 
 export interface LoginDialogProps {
     id: string;
@@ -62,6 +63,7 @@ export function LoginDialog(props: LoginDialogProps) {
             dialogRef.current?.showModal();
         }
     };
+
     useEffect(() => {
         setLoading(true);
         toggleModalVisibility(true);
@@ -74,7 +76,7 @@ export function LoginDialog(props: LoginDialogProps) {
             }
             setLoading(false);
         })
-    }, [props.labelButton1]);
+    }, []);
 
     return (
         <>

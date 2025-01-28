@@ -19,14 +19,7 @@ import React, {useEffect, useRef, useState} from 'react';
 import './main_style/App.css';
 import logo_transperent_smaller from './images/logo_transperent_smaller_invert_supervision3.png'
 import {DepartmentProcessSummary, DepartmentSummary, DomainSummary, SourceTestResponseDto} from "./generated/api";
-import {
-    getDepartmentProcessSummary,
-    getDepartmentSummary,
-    getDomainSummary,
-    getHierarchy,
-    getLatestResult,
-    inDemoMode,
-} from "./service/supervisionService";
+import {getDepartmentProcessSummary, getDepartmentSummary, getDomainSummary, getHierarchy, getLatestResult, inDemoMode,} from "./service/supervisionService";
 import {Piechart, PieProps} from "./components/graph/Pie";
 import {Footer} from "./components/others/Footer";
 import {HistogramGraph} from "./components/graph/HistogramGraph";
@@ -216,8 +209,10 @@ function App() {
         resetStates();
     }
 
-    const checkAdminIsLoggedIn = () => {
-        adminIsLoggedin().then(isLoggedIn => {
+    const checkAdminIsLoggedIn = (): Promise<boolean> => {
+        setDialogIsVisible(false);
+        setLoginDialogIsVisible(false);
+        return adminIsLoggedin().then(isLoggedIn => {
             if (!isLoggedIn) {
                 setButtonText('Login');
                 setIsAdminLoggedIn(false);
@@ -225,6 +220,7 @@ function App() {
                 setIsAdminLoggedIn(true);
                 setButtonText('Sources');
             }
+            return isLoggedIn;
         })
     }
 
@@ -295,11 +291,13 @@ function App() {
                         <span className={'configBox'}>
                     {buttonText && buttonText.length > 0 &&
                         <button onClick={() => {
-                            if (!isAdminLoggedIn) {
-                                setLoginDialogIsVisible(true);
-                            } else {
-                                setDialogIsVisible(true);
-                            }
+                            checkAdminIsLoggedIn().then(isLoggedIn => {
+                                if (!isLoggedIn) {
+                                    setLoginDialogIsVisible(true);
+                                } else {
+                                    setDialogIsVisible(true);
+                                }
+                            });
                         }} className="orangeButton hideForMobile">{buttonText}</button>
                     }
                             <div>
@@ -568,11 +566,11 @@ function App() {
                     </div>
                     <Footer/>
                 </div>
-            <div className={'buildStuff'} id={'buildstuff'}>
-                <div id={'buildbutton'} onClick={() => {
-                    setBuildDialogIsVisible(true);
-                }} className="buildbutton hideForMobile">{'Build'}</div>
-            </div>
+                <div className={'buildStuff'} id={'buildstuff'}>
+                    <div id={'buildbutton'} onClick={() => {
+                        setBuildDialogIsVisible(true);
+                    }} className="buildbutton hideForMobile">{'Build'}</div>
+                </div>
             </>
         </div>
     );
