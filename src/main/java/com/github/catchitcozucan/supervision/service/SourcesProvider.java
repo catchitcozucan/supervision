@@ -135,7 +135,11 @@ public class SourcesProvider {
 				CatchIt.getInstance().submitTask(new TaskBase() {
 					@Override
 					public String name() {
-						return new StringBuilder(source.toString()).append(TASK).toString();
+						String key = source.toString();
+						if (source.getRequestKey() != null && StringUtils.hasContents(source.getRequestKey().getKey())) {
+							key = source.getRequestKey().getKey();
+						}
+						return new StringBuilder(key).append(TASK).toString();
 					}
 
 					@Override
