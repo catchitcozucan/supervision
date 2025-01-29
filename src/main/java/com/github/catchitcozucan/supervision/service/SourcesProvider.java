@@ -37,7 +37,7 @@ import com.github.catchitcozucan.supervision.utils.json.GsonWrapper;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.apache.commons.lang3.ThreadUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
@@ -45,6 +45,8 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.InputStream;
+import java.time.Duration;
+import java.time.temporal.ChronoUnit;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
@@ -60,6 +62,9 @@ import static com.github.catchitcozucan.supervision.utils.IOUtils.resourceToStre
 public class SourcesProvider {
 	private static final String COULD_NOT_LOCATE_CONFIG_RESOURCE_S = "Could not locate config resource %s";
 	private static final String YIKES_I_HAVE_NO_SOURCES = "Yikes - I have no sources!";
+	private static final String DOT = ".";
+	private static final String WE_WILL_DELETING_SOURCE_S = "We will deleting source %s";
+	private static final String AT = "@";
 
 	private List<SourceDto> demoSources = new ArrayList<>();
 	private boolean weAreInDemoMode;
@@ -76,6 +81,7 @@ public class SourcesProvider {
 
 	public static final String TASK = "_TASK";
 	private static final String DEMO_MODE_IS_ACTIVATED_ALL_HISTOGRAMS_WILL_BE_GENERATED = "Demo mode is activated - all histograms will be generated!";
+	private Object deleteLock = new Object();
 
 	@PostConstruct
 	public void init() {
@@ -129,51 +135,61 @@ public class SourcesProvider {
 	}
 
 	public void refreshResults() {
-		List<SourcelEntity> toDelete = new ArrayList<>();
-		getAllSources().stream().forEach(source -> {
-			if (!source.isDisabled()) {
-				CatchIt.getInstance().submitTask(new TaskBase() {
-					@Override
-					public String name() {
-						String key = source.toString();
-						if (source.getRequestKey() != null && StringUtils.hasContents(source.getRequestKey().getKey())) {
-							key = source.getRequestKey().getKey();
+		List<Integer> toDelete = new ArrayList<>();
+		synchronized (deleteLock) {
+			getAllSources().stream().forEach(source -> {
+				if (!source.isDisabled()) {
+					CatchIt.getInstance().submitTask(new TaskBase() {
+						@Override
+						public String name() {
+							String key = source.toString();
+							if (source.getRequestKey() != null && StringUtils.hasContents(source.getRequestKey().getKey())) {
+								key = source.getRequestKey().getKey();
+							}
+							return new StringBuilder(key).append(TASK).toString();
 						}
-						return new StringBuilder(key).append(TASK).toString();
-					}
 
-					@Override
-					public void run() {
-						histogramFetcher.fetchHistogram(UUID.fromString(source.getRequestKey().getKey()), false);
-					}
+						@Override
+						public void run() {
+							histogramFetcher.fetchHistogram(UUID.fromString(source.getRequestKey().getKey()), false);
+						}
 
-					@Override
-					public IsolationLevel.Level provideIsolationLevel() {
-						return IsolationLevel.Level.KIND_EXCLUSIVE;
+						@Override
+						public IsolationLevel.Level provideIsolationLevel() {
+							return IsolationLevel.Level.KIND_EXCLUSIVE;
+						}
+					});
+				} else {
+					final UUID uuid = UUID.fromString(source.getRequestKey().getKey());
+					Optional<SourcelEntity> sourceEntity = sourceRepository.findFirstByAccessKey(uuid);
+					if (sourceEntity.isPresent()) {
+						toDelete.add(sourceEntity.get().getId());
 					}
-				});
-			} else {
-				final UUID uuid = UUID.fromString(source.getRequestKey().getKey());
-				Optional<SourcelEntity> sourceEntity = sourceRepository.findFirstByAccessKey(uuid);
-				if (sourceEntity.isPresent()) {
-					toDelete.add(sourceEntity.get());
 				}
-			}
-		});
+			});
+		}
 
 		if (!toDelete.isEmpty()) {
-			List<Integer> sourceIds = new ArrayList<>();
-			toDelete.stream().forEach(source -> {
-				SourceDetailEntity detail = source.getSourceDetailEntity();
-				detail.setHeaders(null);
-				source.removeDetail();
-				Optional<SourcelResponseResultEntity> result = sourcelResponseResultRepository.findFirstByAccessKey(source.getAccessKey());
-				if (result.isPresent()) {
-					sourcelResponseResultRepository.delete(result.get());
-				}
-				sourceIds.add(source.getId());
-			});
-			sourceRepository.deleteAllById(sourceIds);
+			synchronized (deleteLock) {
+				waitUntilCatchItIsNotExecuting();
+				List<SourcelEntity> sourcesToDelete = sourceRepository.findAllById(toDelete);
+				sourcesToDelete.stream().forEach(source -> {
+					SourceDetailEntity detail = source.getSourceDetailEntity();
+					detail.setHeaders(null);
+					source.removeDetail();
+					Optional<SourcelResponseResultEntity> result = sourcelResponseResultRepository.findFirstByAccessKey(source.getAccessKey());
+					if (result.isPresent()) {
+						sourcelResponseResultRepository.delete(result.get());
+					}
+					StringBuilder sourceInfo = new StringBuilder();
+					sourceInfo.append(source.getDomain()).append(DOT);
+					sourceInfo.append(source.getDepartment()).append(DOT);
+					sourceInfo.append(source.getProcessName()).append(AT);
+					sourceInfo.append(source.getAccessUrl());
+					log.info(String.format(WE_WILL_DELETING_SOURCE_S, sourceInfo.toString()));
+				});
+				sourceRepository.deleteAllById(toDelete);
+			}
 		}
 	}
 
@@ -292,5 +308,13 @@ public class SourcesProvider {
 
 	private Collection<SourceDto> getAllSources() {
 		return sourceConversionService.convertForwards(sourceRepository.findAll());
+	}
+
+	private void waitUntilCatchItIsNotExecuting() {
+		while (CatchIt.getInstance().isExecuting()){
+			try {
+				ThreadUtils.sleep(Duration.of(300, ChronoUnit.MILLIS));
+			} catch (InterruptedException ignore) {}
+		}
 	}
 }

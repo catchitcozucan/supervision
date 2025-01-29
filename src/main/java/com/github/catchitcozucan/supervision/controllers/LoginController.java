@@ -24,6 +24,7 @@ import com.github.catchitcozucan.supervision.exception.BadRequestException;
 import com.github.catchitcozucan.supervision.exception.CatchitSupervisionRuntimeException;
 import com.github.catchitcozucan.supervision.exception.ForbiddenRequestException;
 import com.github.catchitcozucan.supervision.service.UserService;
+import com.github.catchitcozucan.supervision.utils.StringUtils;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
@@ -38,6 +39,7 @@ import org.springframework.web.bind.annotation.*;
 public class LoginController {
 
 	private static final String JSON_CHARSET_UTF_8 = "application/json; charset=UTF-8";
+	private static final String UNKOWN = "UNKOWN";
 
 	private final UserService userService;
 
@@ -57,7 +59,11 @@ public class LoginController {
 			login.validate();
 			return userService.verifyLogin(login.getUserName(), login.getPassword(), request, response);
 		} catch (CatchitSupervisionRuntimeException exec) {
-			log.warn("Login failed", exec);
+			String who = UNKOWN;
+			if (StringUtils.hasContents(login.getUserName())) {
+				who = login.getUserName();
+			}
+			log.warn(String.format("Login failed for % s", who));
 			throw new ForbiddenRequestException(exec);
 		}
 	}
