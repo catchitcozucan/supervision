@@ -81,7 +81,6 @@ export function SourceDialog(props: SourceDialogProps) {
 
     const reload = () => {
         getSources().then(resp => {
-
             if (typeof resp === 'string') { // SESSION ENDED..
                 if (props.onClickButton2) {
                     props.onClickButton2();
@@ -90,6 +89,7 @@ export function SourceDialog(props: SourceDialogProps) {
             } else {
                 if (props.showSources) {
                     setSources(resp);
+
                     let usedUrls: string[] = [];
                     resp.forEach(r => {
                         usedUrls.push(r.accessUrl);

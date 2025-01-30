@@ -142,7 +142,7 @@ public class DataProcessingService {
 	}
 
 	public SourceTestResponseDto testSource(UUID requestKey) {
-		return histogramFetcher.fetchHistogram(requestKey, true);
+		return histogramFetcher.fetchHistogram(requestKey, HistogramFetcher.AccessType.TEST);
 	}
 
 	public SourceDto saveSource(SourceDto sourceToSave) {
@@ -175,7 +175,7 @@ public class DataProcessingService {
 			saved = sourcesProvider.saveSource(sourceToSave);
 		}
 		if (triggerResultUponSave) {
-			SourceTestResponseDto result = histogramFetcher.fetchHistogram(UUID.fromString(saved.getRequestKey().getKey()), false);
+			SourceTestResponseDto result = histogramFetcher.fetchHistogram(UUID.fromString(saved.getRequestKey().getKey()), HistogramFetcher.AccessType.WRITE);
 			saved.setState(result.getState());
 		}
 		return saved;
@@ -267,7 +267,7 @@ public class DataProcessingService {
 				if (sourcesProvider.isInDemoMode()) {
 					h = Optional.of(DemoHistogramMaker.generate(source.getRequestKey().getKey(), source.getDomain(), source.getDepartment(), source.getProcessName(), false, false));
 				} else {
-					h = Optional.of(histogramFetcher.fetchHistogram(UUID.fromString(source.getRequestKey().getKey()), true).getHistogram());
+					h = Optional.of(histogramFetcher.fetchHistogram(UUID.fromString(source.getRequestKey().getKey()), HistogramFetcher.AccessType.READ_ONLY).getHistogram());
 				}
 				if (h.isPresent()) {
 					Histogram histogram = h.get();
@@ -311,7 +311,7 @@ public class DataProcessingService {
 				if (sourcesProvider.isInDemoMode()) {
 					h = Optional.of(DemoHistogramMaker.generate(source.getRequestKey().getKey(), source.getDomain(), source.getDepartment(), source.getProcessName(), false, false));
 				} else {
-					h = Optional.of(histogramFetcher.fetchHistogram(UUID.fromString(source.getRequestKey().getKey()), true).getHistogram());
+					h = Optional.of(histogramFetcher.fetchHistogram(UUID.fromString(source.getRequestKey().getKey()), HistogramFetcher.AccessType.READ_ONLY).getHistogram());
 				}
 				if (h.isPresent()) {
 					Histogram histogram = h.get();
@@ -350,7 +350,7 @@ public class DataProcessingService {
 				if (sourcesProvider.isInDemoMode()) {
 					h = Optional.of(DemoHistogramMaker.generate(source.getRequestKey().getKey(), source.getDomain(), source.getDepartment(), source.getProcessName(), false, false));
 				} else {
-					h = Optional.of(histogramFetcher.fetchHistogram(UUID.fromString(source.getRequestKey().getKey()), true).getHistogram());
+					h = Optional.of(histogramFetcher.fetchHistogram(UUID.fromString(source.getRequestKey().getKey()), HistogramFetcher.AccessType.READ_ONLY).getHistogram());
 				}
 				if (h.isPresent()) {
 					Histogram histogram = h.get();

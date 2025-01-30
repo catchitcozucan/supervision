@@ -151,7 +151,7 @@ public class SourcesProvider {
 
 						@Override
 						public void run() {
-							histogramFetcher.fetchHistogram(UUID.fromString(source.getRequestKey().getKey()), false);
+							histogramFetcher.fetchHistogram(UUID.fromString(source.getRequestKey().getKey()), HistogramFetcher.AccessType.WRITE);
 						}
 
 						@Override
