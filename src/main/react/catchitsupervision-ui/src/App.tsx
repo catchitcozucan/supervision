@@ -45,7 +45,6 @@ function App() {
     const [activePiePropsProc, setActivePiePropsProc] = useState<PieProps | undefined>(undefined);
     const [activePiePropsFin, setActivePiePropsFin] = useState<PieProps | undefined>(undefined);
     const [dialogIsVisible, setDialogIsVisible] = useState<boolean>(false);
-    const [isAdminLoggedIn, setIsAdminLoggedIn] = useState<boolean>(false);
     const [loginDialogIsVisible, setLoginDialogIsVisible] = useState<boolean>(false);
     const [buildDialogIsVisible, setBuildDialogIsVisible] = useState<boolean>(false);
     const [buttonText, setButtonText] = useState<string>('');
@@ -215,9 +214,7 @@ function App() {
         return adminIsLoggedin().then(isLoggedIn => {
             if (!isLoggedIn) {
                 setButtonText('Login');
-                setIsAdminLoggedIn(false);
             } else {
-                setIsAdminLoggedIn(true);
                 setButtonText('Sources');
             }
             return isLoggedIn;

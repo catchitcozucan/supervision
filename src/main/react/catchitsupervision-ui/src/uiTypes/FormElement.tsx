@@ -20,6 +20,7 @@ import {useEffect, useState} from "react";
 import './FormElement.css'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faMinusCircle, faPlusCircle} from "@fortawesome/free-solid-svg-icons";
+import {JSX} from "react/jsx-runtime";
 
 export interface FormElementProps {
     formValue: FormValue;

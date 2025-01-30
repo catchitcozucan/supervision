@@ -25,6 +25,7 @@ import {faThumbsDown, faThumbsUp} from "@fortawesome/free-solid-svg-icons";
 import {SpinnerInline} from "../components/spinner/SpinnerInline";
 import '../components/dialog/SourceDialog.css'
 import './SourceForm.css'
+import {JSX} from "react/jsx-runtime";
 
 
 export interface SourceFormProps {
@@ -34,7 +35,7 @@ export interface SourceFormProps {
     touchedCallback: (touched: SourceDto | undefined) => void
 }
 
-export const SourceForm = (props: SourceFormProps): JSX.Element => {
+export const SourceForm = (props: SourceFormProps): JSX.Element  => {
     const formRef = useRef<HTMLFormElement | null>(null);
     const dataKey = props.dataKey;
     const [formData, setFormData] = useState<FormValue[]>([]);

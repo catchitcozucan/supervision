@@ -16,10 +16,9 @@
  *    in connection with the software or the use or other dealings in the software.
  */
 import {WebResponse} from "./WebResponse";
-
-let baseUrl = 'http://' + window.location.hostname + ':8080/catchitsupervision'; // for local DEV
-if (['production', 'staging'].includes(process.env.NODE_ENV)) {
-    baseUrl = '/catchitsupervision';
+let baseUrl = '';
+if(process.env.NODE_ENV.toLowerCase().includes('dev')) { // for local DEV
+    baseUrl = 'http://' + window.location.hostname+':8080/catchitsupervision';
 }
 export const BASE_URL = baseUrl;
 

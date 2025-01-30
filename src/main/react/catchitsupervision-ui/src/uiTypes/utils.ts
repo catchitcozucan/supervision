@@ -17,16 +17,15 @@
  */
 export interface Runner {
     doStuff(): void;
-
     finished: boolean;
     sleepInBetween: number;
 }
 
 export function doUntil(runner: Runner) {
-    let intarval: number | undefined | NodeJS.Timer = undefined;
+    let timeoutRef : NodeJS.Timeout | undefined = undefined;
     let hasFailed = false;
     try {
-        intarval = setInterval(() => {
+        timeoutRef = setInterval(() => {
             if (!runner.finished && !hasFailed) {
                 try {
                     runner.doStuff();
@@ -37,8 +36,8 @@ export function doUntil(runner: Runner) {
             }
         }, runner.sleepInBetween);
     } finally {
-        if ((runner.finished || hasFailed) && intarval) {
-            clearInterval(intarval);
+        if ((runner.finished || hasFailed) && timeoutRef) {
+            clearInterval(timeoutRef);
         }
     }
 }
