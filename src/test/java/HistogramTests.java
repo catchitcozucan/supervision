@@ -4,7 +4,7 @@ import com.github.catchitcozucan.supervision.utils.StringUtils;
 import com.github.catchitcozucan.supervision.utils.histogram.HistogramCalculi;
 import com.github.catchitcozucan.supervision.utils.histogram.HistogramState;
 import com.google.gson.Gson;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.Resource;
 

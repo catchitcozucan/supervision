@@ -38,6 +38,28 @@
         <lombok.version>1.18.36</lombok.version>
     </properties>
 
+    <issueManagement>
+        <system>Github</system>
+        <url>https://github.com/catchitcozucan/supervision/issues</url>
+    </issueManagement>
+
+    <licenses>
+        <license>
+            <name>CC BY 4.0</name>
+            <url>https://creativecommons.org/licenses/by/4.0/</url>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <name>Ola Aronsson</name>
+            <email>catchit@thehole.black</email>
+            <organization>nollettnoll AB</organization>
+            <organizationUrl>https://nollettnoll.net</organizationUrl>
+            <timezone>UTC+01</timezone>
+        </developer>
+    </developers>
+
     <dependencies>
         <!-- Spring Boot -->
         <dependency>
@@ -112,7 +134,7 @@
         <dependency>
             <groupId>com.github.catchitcozucan</groupId>
             <artifactId>core</artifactId>
-            <version>2.47</version>
+            <version>2.49</version>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
@@ -317,6 +339,10 @@
                         <manifest>
                             <mainClass>${start-class}</mainClass>
                             <packageName>com.github.catchitcozucan.supervision</packageName>
+                            <addDefaultEntries />
+                            <addDefaultImplementationEntries />
+                            <addBuildEnvironmentEntries />
+                            <addDefaultSpecificationEntries />
                         </manifest>
                     </archive>
                 </configuration>
