@@ -235,7 +235,9 @@ public class SourcesProvider {
         }
         try {
             setInDemoMode(false);
-            log.info(String.format(WE_HAVE_SAVED_SOURCE_S, getSourceInfo(saved)));
+            if (StringUtils.hasContents(saved.getAccessUrl())) {
+                log.info(String.format(WE_HAVE_SAVED_SOURCE_S, getSourceInfo(saved)));
+            }
             return sourceConversionService.convertForward(saved);
         } catch (Exception e) {
             String errMsg = String.format("Failed to save source %s", sourceDto.getRequestKey().getKey());
