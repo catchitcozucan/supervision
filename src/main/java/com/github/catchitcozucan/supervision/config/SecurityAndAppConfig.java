@@ -100,7 +100,13 @@ public class SecurityAndAppConfig {
 		http.csrf((csrf) -> csrf.disable());
 		return http.cors(cors -> {
 			cors.configurationSource(corsConfigurationSource());
-		}).userDetailsService(userService).authorizeHttpRequests(authorize -> authorize.requestMatchers("/supervision/deletesource/*").authenticated().requestMatchers("/supervision/sources").authenticated().requestMatchers("/supervision/testsource").authenticated().requestMatchers("/supervision/savesource").authenticated().anyRequest().permitAll()).build();
+		}).userDetailsService(userService)
+				.authorizeHttpRequests(authorize -> authorize
+						.requestMatchers("/supervision/deletesource/*").authenticated()
+						.requestMatchers("/supervision/sources").authenticated()
+						.requestMatchers("/supervision/testsource").authenticated()
+						.requestMatchers("/supervision/savesource").authenticated()
+						.anyRequest().permitAll()).build();
 	}
 
 	@Primary
