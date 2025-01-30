@@ -212,7 +212,7 @@ export function HistogramGraph(props: HistograProps) {
                     <canvas ref={chartRef} width="840px" height="500px" id={chartId}></canvas>
                 </div>
             }
-            <div className={'subtitles hideForMobile'}>{subTitle}</div>
+            <div className={'subtitles noselect hideForMobile'}>{subTitle}</div>
         </>
     )
 }
