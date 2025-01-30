@@ -17,12 +17,21 @@
  */
 package com.github.catchitcozucan.supervision.service;
 
+import static com.github.catchitcozucan.supervision.exception.ErrorCodes.ADMIN_USER_NAME_DOES_NOT_EXIST;
+import static com.github.catchitcozucan.supervision.exception.ErrorCodes.MULTIPLE_ADMIN_USERS_EXISTS;
+import static com.github.catchitcozucan.supervision.exception.ErrorCodes.MULTIPLE_USERS_WITH_THE_SAME_NAME;
+import static com.github.catchitcozucan.supervision.exception.ErrorCodes.USER_NAME_ALREADY_EXISTS;
+import static com.github.catchitcozucan.supervision.exception.ErrorCodes.USER_NAME_DOES_NOT_EXIST;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
+
 import com.github.catchitcozucan.supervision.api.UserAndHashedPassword;
 import com.github.catchitcozucan.supervision.exception.CatchitSupervisionRuntimeException;
 import com.github.catchitcozucan.supervision.exception.ErrorCodes;
 import com.github.catchitcozucan.supervision.repository.LoginRepository;
 import com.github.catchitcozucan.supervision.repository.enteties.LoginEntity;
-import com.github.catchitcozucan.supervision.utils.TomcatDetector;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -31,7 +40,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -46,12 +54,6 @@ import org.springframework.security.web.context.HttpSessionSecurityContextReposi
 import org.springframework.security.web.context.SecurityContextRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
-
-import static com.github.catchitcozucan.supervision.exception.ErrorCodes.*;
-
 @Service
 @Slf4j
 @RequiredArgsConstructor
@@ -60,10 +62,9 @@ public class UserService implements UserDetailsService {
 	public static GrantedAuthority ADMIN = () -> "ADMIN";
 	public static GrantedAuthority USER = () -> "USER";
 
-	private static final String JSESSIONID = "JSESSIONID";
-	private static final String THERE_IS_A_LIVE_SESSION = "There is a live session";
 	private static final String WE_HAVE_NO_SESSION = "We have no session!";
-	private static final String THERE_IS_A_COOKIE_AND_IS_IS_CALLED_CATCHITSUPERVISION = "There is a cookie and is is called catchitsupervision : ";
+	private static final String THERE_IS_NO_CATCHITSUPERVISION_COOKIE = "There is no cookie called catchitsupervision";
+	private static final String THERE_IS_A_COOKIE_NO_SESSION_MATCH = "There is a catchitsupervision but it does not match our session";
 	private static final String USER_WITH_NAME_S_ALREADY_EXISTS_NOT_EXIST = "User with name %s already exists not exist";
 	private static final String USER_DOES_NOT_EXIST = "User does not exist";
 	private static final String ADMIN_USER_DOES_NOT_EXIST = "Admin user does not exist";
@@ -71,7 +72,6 @@ public class UserService implements UserDetailsService {
 	private static final String MULTIPLE_USERS_WITH_USER_NAMSE_S_ALREADY_EXIST_LOGIN_TABLE_IS_CORRUPT = "Multiple users with user namse %s already exist - login-table is corrupt!";
 	private static final String YUP_THERE_IS_ONE = "YUP-THERE-IS-ONE";
 	private static final String ADMIN1 = "admin";
-	private static final String USER1 = "user";
 	private static final String SPRING_SECURITY_CONTEXT = "SPRING_SECURITY_CONTEXT";
 	private static final String USER_S_IS_NOT_IN_SESSION = "User %s is NOT in session";
 	private Argon2PasswordEncoder argo2Utility = new Argon2PasswordEncoder(4, 8, 4, 1024, 2);
@@ -133,7 +133,10 @@ public class UserService implements UserDetailsService {
 				setupContext(user, user.equals(ADMIN1) ? ADMIN : USER, request, response);
 				return UserAndHashedPassword.builder().userName(user).hash(YUP_THERE_IS_ONE).build();
 			} else {
-				LOGGER.warn("Wrong passwd provided for user {}", user);
+				if (!user.equals(ADMIN1) || passwd != ADMIN1) {  // 'admin' is tested programmtically to make sure it's never in use..
+					LOGGER.warn("Wrong password given for user {}", user);
+				}
+
 				throw new CatchitSupervisionRuntimeException(ErrorCodes.PWD_DOES_NOT_MATCH);
 			}
 		}
@@ -141,9 +144,7 @@ public class UserService implements UserDetailsService {
 
 	public boolean thereIsAValidSession(HttpServletRequest request) {
 		HttpSession session = request.getSession(false);
-		if (session != null) {
-			log.info(THERE_IS_A_LIVE_SESSION);
-		} else {
+		if (session == null) {
 			log.info(WE_HAVE_NO_SESSION);
 		}
 		if (session != null && request.getCookies() != null) {
@@ -154,10 +155,14 @@ public class UserService implements UserDetailsService {
 			//}
 			final String cookieNameForLookup = cName;
 
-			Optional<Cookie> possCookie = Arrays.stream(request.getCookies()).filter(c -> {
-				return c.getName().equals(cookieNameForLookup);
-			}).findFirst();
-			log.info(THERE_IS_A_COOKIE_AND_IS_IS_CALLED_CATCHITSUPERVISION + possCookie.isPresent());
+			Optional<Cookie> possCookie = Arrays.stream(request.getCookies()).filter(c -> c.getName().equals(cookieNameForLookup)).findFirst();
+			if (!possCookie.isPresent()) {
+				log.info(THERE_IS_NO_CATCHITSUPERVISION_COOKIE);
+			} else {
+				if (!possCookie.get().getValue().equals(session.getId())) {
+					log.info(THERE_IS_A_COOKIE_NO_SESSION_MATCH);
+				}
+			}
 			return possCookie.isPresent() && possCookie.get().getValue().equals(session.getId());
 		}
 		return adminIsAuthenticated();
