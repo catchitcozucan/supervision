@@ -156,6 +156,7 @@ a:active {
     margin-left: 2%;
     height: 48vmin;
     width: fit-content;
+    display: inline-flex !important;
 }
 
 .graphPaddingBigGraph {
@@ -422,19 +423,18 @@ a:active {
 /* for BIGGER screens */
 @media only screen and (min-width: 2560px) {
     .errorBox {
-        padding-left: 22%;
-        padding-right: 15%;
         text-align: right;
-        font-size: 5.8em;
+        font-size: 4.8em;
         font-weight: lighter;
         -webkit-font-smoothing: antialiased;
-        line-height: 1.15;
-        margin: 0;
+        margin-left: 180px;
+        display: inline-table;
         letter-spacing: -5px;
         background: -webkit-linear-gradient(#e80923, #f3934f);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
     }
+
     .errorBoxEmpty{
         padding-right: 73%;
     }
@@ -471,9 +471,10 @@ a:active {
     }
 
     .configBox {
+        position: absolute;
+        top: 60px;
         color: #FDF4B9FF;
-        padding-left: 11%;
-        padding-top: 4px;
+        left: 91%;
         padding-bottom: 4px;
         font-size: 3.8em;
         line-height: 1.8;
