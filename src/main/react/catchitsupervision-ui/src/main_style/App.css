@@ -353,12 +353,15 @@ a:active {
 
 /* for mobile type devices */
 @media only screen and (max-width: 1026px) {
+    .stretchLogoForMobile {
+        width: 97% !important;
+    }
     .hierarchy {
         position: fixed !important;
         left: 45px !important;
         text-align: left !important;
         font-size: 2.1em;
-        top: 230px;
+        top: 210px;
         line-height: 0.75;
         margin-bottom: 30px;
     }
@@ -373,13 +376,15 @@ a:active {
         margin-top: 50px !important;
     }
     .errorBox {
-        position: absolute;
-        left: 0;
-        top: 248px !important;
+        position: fixed;
+        left: -38%;
+        top: 236px !important;
         text-align: left !important;
         font-size: 2.8em !important;
         line-height: 0.75 !important;
         letter-spacing: -1px !important;
+        max-width: 96% !important;
+        min-width: 96% !important;
     }
     .hideForMobile {
         display: none !important;
@@ -410,7 +415,7 @@ a:active {
         min-height: fit-content !important;
     }
     .nollettnollMobile {
-        max-width: 92% !important;
+        width: 96% !important;
     }
 }
 
@@ -483,13 +488,12 @@ a:active {
 /* for sort of std laptop */
 @media (max-width: 1920px) {
     .errorBox {
-        padding-left: 3%;
         text-align: right;
-        font-size: 5.8em;
+        font-size: 4.8em;
         font-weight: lighter;
         -webkit-font-smoothing: antialiased;
-        line-height: 1.15;
-        margin: 0;
+        margin-left: 180px;
+        display: inline-table;
         letter-spacing: -5px;
         background: -webkit-linear-gradient(#e80923, #f3934f);
         -webkit-background-clip: text;
@@ -512,7 +516,7 @@ a:active {
         position: absolute;
         top: 40px;
         color: #FDF4B9FF;
-        padding-left: 81%;
+        padding-left: 18%;
         padding-bottom: 4px;
         font-size: 2.1em;
         line-height: 1.8;
@@ -533,6 +537,13 @@ a:active {
     .subtitles{
         width: 958px !important;
         padding-top: 1px;
+    }
+}
+
+/** further laptop-like machines */
+@media (max-width: 1720px) {
+    .configBox {
+        padding-left: 12% !important;
     }
 }
 
