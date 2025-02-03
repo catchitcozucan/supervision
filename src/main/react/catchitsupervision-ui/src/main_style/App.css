@@ -473,7 +473,7 @@ a:active {
         position: absolute;
         top: 60px;
         color: #FDF4B9FF;
-        left: 91%;
+        left: 92.5%;
         padding-bottom: 4px;
         font-size: 3.8em;
         line-height: 1.8;
@@ -482,7 +482,7 @@ a:active {
     .graphPaddingBig {
         height: 58vmin !important;
         width: fit-content;
-        display: inline-flex !important;
+        display: inline-flex;
     }
 }
 
