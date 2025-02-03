@@ -540,6 +540,13 @@ a:active {
     }
 }
 
+/** further laptop-like machines */
+@media (max-width: 1720px) {
+    .configBox {
+        padding-left: 12% !important;
+    }
+}
+
 /* The button */
 .orangeButton {
     align-items: center;
