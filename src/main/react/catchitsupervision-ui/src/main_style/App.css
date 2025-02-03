@@ -483,13 +483,12 @@ a:active {
 /* for sort of std laptop */
 @media (max-width: 1920px) {
     .errorBox {
-        padding-left: 3%;
         text-align: right;
-        font-size: 5.8em;
+        font-size: 4.8em;
         font-weight: lighter;
         -webkit-font-smoothing: antialiased;
-        line-height: 1.15;
-        margin: 0;
+        margin-left: 180px;
+        display: inline-table;
         letter-spacing: -5px;
         background: -webkit-linear-gradient(#e80923, #f3934f);
         -webkit-background-clip: text;
@@ -512,7 +511,7 @@ a:active {
         position: absolute;
         top: 40px;
         color: #FDF4B9FF;
-        padding-left: 81%;
+        padding-left: 18%;
         padding-bottom: 4px;
         font-size: 2.1em;
         line-height: 1.8;
