@@ -275,7 +275,7 @@ function App() {
             <>
                 <div id="containermain">
                     <div id="logo" className="noselect d-inline-block align-top logoMain stretchLogoForMobile">
-                        <img alt='logo' draggable="false" style={{height: '170px'}} src={logo_transperent_smaller}
+                        <img alt='logo' draggable="false" src={logo_transperent_smaller}
                              onClick={() => {
                                  resetStates();
                              }} className={'slotter'}/>
