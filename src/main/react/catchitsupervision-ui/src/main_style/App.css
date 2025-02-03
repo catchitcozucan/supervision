@@ -353,6 +353,9 @@ a:active {
 
 /* for mobile type devices */
 @media only screen and (max-width: 1026px) {
+    .stretchLogoForMobile {
+        width: 99% !important;
+    }
     .hierarchy {
         position: fixed !important;
         left: 45px !important;
@@ -374,8 +377,9 @@ a:active {
     }
     .errorBox {
         position: absolute;
-        left: 0;
-        top: 248px !important;
+        left: -38%;
+        width: 100%;
+        top: 250px !important;
         text-align: left !important;
         font-size: 2.8em !important;
         line-height: 0.75 !important;
