@@ -274,7 +274,7 @@ function App() {
         <div id={'main'} className={'stdColors gradient root'}>
             <>
                 <div id="containermain">
-                    <div id="logo" className="noselect d-inline-block align-top logo">
+                    <div id="logo" className="noselect d-inline-block align-top logoMain">
                         <img alt='logo' draggable="false" style={{height: '170px'}} src={logo_transperent_smaller}
                              onClick={() => {
                                  resetStates();

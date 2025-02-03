@@ -129,6 +129,17 @@ a:active {
     overflow: hidden;
 }
 
+.logoMain {
+    user-select: none;
+    -webkit-user-drag: none;
+    height: 222px;
+    display: block;
+    padding-left: 18px;
+    padding-top: 16px;
+    margin-top: 13px;
+    margin-left: 13px;
+}
+
 .stdColors {
     color: #FDF4B9FF;
     text-align: left;
@@ -499,9 +510,9 @@ a:active {
 
     .configBox {
         position: absolute;
-        top: 60px;
+        top: 40px;
         color: #FDF4B9FF;
-        padding-left: 6%;
+        padding-left: 81%;
         padding-bottom: 4px;
         font-size: 2.1em;
         line-height: 1.8;
