@@ -515,9 +515,9 @@ a:active {
 
     .configBox {
         position: absolute;
-        top: 40px;
+        top: 60px;
         color: #FDF4B9FF;
-        padding-left: 18%;
+        left: 93%;
         padding-bottom: 4px;
         font-size: 2.1em;
         line-height: 1.8;
@@ -544,7 +544,7 @@ a:active {
 /** further laptop-like machines */
 @media (max-width: 1720px) {
     .configBox {
-        padding-left: 12% !important;
+        left: 91% !important;
     }
 }
 
