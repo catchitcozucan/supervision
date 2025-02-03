@@ -156,7 +156,6 @@ a:active {
     margin-left: 2%;
     height: 48vmin;
     width: fit-content;
-    display: inline-flex !important;
 }
 
 .graphPaddingBigGraph {
