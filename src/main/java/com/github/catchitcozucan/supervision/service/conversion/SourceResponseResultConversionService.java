@@ -27,7 +27,7 @@ import com.github.catchitcozucan.supervision.repository.enteties.SourcelResponse
 import com.github.catchitcozucan.supervision.utils.DateUtils;
 import com.github.catchitcozucan.supervision.utils.json.GsonWrapper;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Service;
 
 import java.text.ParseException;

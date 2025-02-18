@@ -17,16 +17,6 @@
  */
 package com.github.catchitcozucan.supervision.service;
 
-import static com.github.catchitcozucan.supervision.exception.ErrorCodes.ADMIN_USER_NAME_DOES_NOT_EXIST;
-import static com.github.catchitcozucan.supervision.exception.ErrorCodes.MULTIPLE_ADMIN_USERS_EXISTS;
-import static com.github.catchitcozucan.supervision.exception.ErrorCodes.MULTIPLE_USERS_WITH_THE_SAME_NAME;
-import static com.github.catchitcozucan.supervision.exception.ErrorCodes.USER_NAME_ALREADY_EXISTS;
-import static com.github.catchitcozucan.supervision.exception.ErrorCodes.USER_NAME_DOES_NOT_EXIST;
-
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
-
 import com.github.catchitcozucan.supervision.api.UserAndHashedPassword;
 import com.github.catchitcozucan.supervision.exception.CatchitSupervisionRuntimeException;
 import com.github.catchitcozucan.supervision.exception.ErrorCodes;
@@ -54,174 +44,180 @@ import org.springframework.security.web.context.HttpSessionSecurityContextReposi
 import org.springframework.security.web.context.SecurityContextRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
+
+import static com.github.catchitcozucan.supervision.exception.ErrorCodes.*;
+
 @Service
 @Slf4j
 @RequiredArgsConstructor
 public class UserService implements UserDetailsService {
 
-	public static GrantedAuthority ADMIN = () -> "ADMIN";
-	public static GrantedAuthority USER = () -> "USER";
+    public static GrantedAuthority ADMIN = () -> "ADMIN";
+    public static GrantedAuthority USER = () -> "USER";
 
-	private static final String WE_HAVE_NO_SESSION = "We have no session!";
-	private static final String THERE_IS_NO_CATCHITSUPERVISION_COOKIE = "There is no cookie called catchitsupervision";
-	private static final String THERE_IS_A_COOKIE_NO_SESSION_MATCH = "There is a catchitsupervision but it does not match our session";
-	private static final String USER_WITH_NAME_S_ALREADY_EXISTS_NOT_EXIST = "User with name %s already exists not exist";
-	private static final String USER_DOES_NOT_EXIST = "User does not exist";
-	private static final String ADMIN_USER_DOES_NOT_EXIST = "Admin user does not exist";
-	private static final String MULTIPLE_ADMIN_USERS_EXIST = "Multiple admin users exist! That must be a corruption of data.. :)";
-	private static final String MULTIPLE_USERS_WITH_USER_NAMSE_S_ALREADY_EXIST_LOGIN_TABLE_IS_CORRUPT = "Multiple users with user namse %s already exist - login-table is corrupt!";
-	private static final String YUP_THERE_IS_ONE = "YUP-THERE-IS-ONE";
-	private static final String ADMIN1 = "admin";
-	private static final String SPRING_SECURITY_CONTEXT = "SPRING_SECURITY_CONTEXT";
-	private static final String USER_S_IS_NOT_IN_SESSION = "User %s is NOT in session";
-	private Argon2PasswordEncoder argo2Utility = new Argon2PasswordEncoder(4, 8, 4, 1024, 2);
-	private static final Logger LOGGER = LoggerFactory.getLogger(UserService.class);
+    private static final String WE_HAVE_NO_SESSION = "We have no session!";
+    private static final String THERE_IS_NO_CATCHITSUPERVISION_COOKIE = "There is no cookie called catchitsupervision";
+    private static final String THERE_IS_A_COOKIE_NO_SESSION_MATCH = "There is a catchitsupervision but it does not match our session";
+    private static final String USER_WITH_NAME_S_ALREADY_EXISTS_NOT_EXIST = "User with name %s already exists not exist";
+    private static final String USER_DOES_NOT_EXIST = "User does not exist";
+    private static final String ADMIN_USER_DOES_NOT_EXIST = "Admin user does not exist";
+    private static final String MULTIPLE_ADMIN_USERS_EXIST = "Multiple admin users exist! That must be a corruption of data.. :)";
+    private static final String MULTIPLE_USERS_WITH_USER_NAMSE_S_ALREADY_EXIST_LOGIN_TABLE_IS_CORRUPT = "Multiple users with user namse %s already exist - login-table is corrupt!";
+    private static final String YUP_THERE_IS_ONE = "YUP-THERE-IS-ONE";
+    private static final String ADMIN1 = "admin";
+    private static final String SPRING_SECURITY_CONTEXT = "SPRING_SECURITY_CONTEXT";
+    private static final String USER_S_IS_NOT_IN_SESSION = "User %s is NOT in session";
+    private Argon2PasswordEncoder argo2Utility = new Argon2PasswordEncoder(4, 8, 4, 1024, 2);
+    private static final Logger LOGGER = LoggerFactory.getLogger(UserService.class);
 
-	@Value("${server.servlet.session.cookie.name}")
-	private String cookieName;
+    @Value("${server.servlet.session.cookie.name}")
+    private String cookieName;
 
-	@Value("${server.servlet.contextPath}")
-	private String servletPath;
+    @Value("${server.servlet.contextPath}")
+    private String servletPath;
 
-	private final LoginRepository loginRepository;
+    private final LoginRepository loginRepository;
 
-	private SecurityContextRepository securityContextRepository = new HttpSessionSecurityContextRepository();
+    private SecurityContextRepository securityContextRepository = new HttpSessionSecurityContextRepository();
 
-	public UserAndHashedPassword createPassword(String user, String pwdInput, HttpServletRequest request, HttpServletResponse response) {
-		List<LoginEntity> logins = loginRepository.findAllByUsernameIs(user);
-		UserAndHashedPassword userAndPwd = UserAndHashedPassword.builder().userName(user).hash(pwdInput).build();
-		userAndPwd.validate();
+    public UserAndHashedPassword createPassword(String user, String pwdInput, HttpServletRequest request, HttpServletResponse response) {
+        List<LoginEntity> logins = loginRepository.findAllByUsernameIs(user);
+        UserAndHashedPassword userAndPwd = UserAndHashedPassword.builder().userName(user).hash(pwdInput).build();
+        userAndPwd.validate();
 
-		if (!user.equals(ADMIN1)) {
-			if (!logins.isEmpty()) {
-				throw new CatchitSupervisionRuntimeException(String.format(USER_WITH_NAME_S_ALREADY_EXISTS_NOT_EXIST, user), USER_NAME_ALREADY_EXISTS);
-			}
+        if (!user.equals(ADMIN1)) {
+            if (!logins.isEmpty()) {
+                throw new CatchitSupervisionRuntimeException(String.format(USER_WITH_NAME_S_ALREADY_EXISTS_NOT_EXIST, user), USER_NAME_ALREADY_EXISTS);
+            }
 
-			String hash = argo2Utility.encode(pwdInput);
-			loginRepository.save(LoginEntity.builder().pwdHash(hash).username(userAndPwd.getUsername()).build());
-			setupContext(user, USER, request, response);
-		} else {
-			if (logins.isEmpty()) {
-				throw new CatchitSupervisionRuntimeException(ADMIN_USER_DOES_NOT_EXIST, ADMIN_USER_NAME_DOES_NOT_EXIST);
-			}
-			if (logins.size() != 1) {
-				throw new CatchitSupervisionRuntimeException(MULTIPLE_ADMIN_USERS_EXIST, MULTIPLE_ADMIN_USERS_EXISTS);
-			}
+            String hash = argo2Utility.encode(pwdInput);
+            loginRepository.save(LoginEntity.builder().pwdHash(hash).username(userAndPwd.getUsername()).build());
+            setupContext(user, USER, request, response);
+        } else {
+            if (logins.isEmpty()) {
+                throw new CatchitSupervisionRuntimeException(ADMIN_USER_DOES_NOT_EXIST, ADMIN_USER_NAME_DOES_NOT_EXIST);
+            }
+            if (logins.size() != 1) {
+                throw new CatchitSupervisionRuntimeException(MULTIPLE_ADMIN_USERS_EXIST, MULTIPLE_ADMIN_USERS_EXISTS);
+            }
 
-			LoginEntity adminLogin = logins.get(0);
-			String hash = argo2Utility.encode(pwdInput);
-			adminLogin.setPwdHash(hash);
-			loginRepository.save(adminLogin);
-			setupContext(ADMIN1, ADMIN, request, response);
-		}
-		userAndPwd.setHash(YUP_THERE_IS_ONE);
-		return userAndPwd;
-	}
+            LoginEntity adminLogin = logins.get(0);
+            String hash = argo2Utility.encode(pwdInput);
+            adminLogin.setPwdHash(hash);
+            loginRepository.save(adminLogin);
+            setupContext(ADMIN1, ADMIN, request, response);
+        }
+        userAndPwd.setHash(YUP_THERE_IS_ONE);
+        return userAndPwd;
+    }
 
-	public UserAndHashedPassword verifyLogin(String user, String passwd, HttpServletRequest request, HttpServletResponse response) {
-		List<LoginEntity> logins = loginRepository.findAllByUsernameIs(user);
-		if (logins.isEmpty()) {
-			LOGGER.warn("User {} does not exist", user);
-			throw new CatchitSupervisionRuntimeException(USER_DOES_NOT_EXIST, USER_NAME_DOES_NOT_EXIST);
-		} else if (logins.size() > 1) {
-			String message = String.format(MULTIPLE_USERS_WITH_USER_NAMSE_S_ALREADY_EXIST_LOGIN_TABLE_IS_CORRUPT, user);
-			LOGGER.warn(message);
-			throw new CatchitSupervisionRuntimeException(message, MULTIPLE_USERS_WITH_THE_SAME_NAME);
-		} else {
-			String pwdHash = logins.get(0).getPwdHash();
-			if (argo2Utility.matches(passwd, pwdHash)) {
-				setupContext(user, user.equals(ADMIN1) ? ADMIN : USER, request, response);
-				return UserAndHashedPassword.builder().userName(user).hash(YUP_THERE_IS_ONE).build();
-			} else {
-				if (!user.equals(ADMIN1) || passwd != ADMIN1) {  // 'admin' is tested programmtically to make sure it's never in use..
-					LOGGER.warn("Wrong password given for user {}", user);
-				}
+    public UserAndHashedPassword verifyLogin(String user, String passwd, HttpServletRequest request, HttpServletResponse response) {
+        List<LoginEntity> logins = loginRepository.findAllByUsernameIs(user);
+        if (logins.isEmpty()) {
+            LOGGER.warn("User {} does not exist", user);
+            throw new CatchitSupervisionRuntimeException(USER_DOES_NOT_EXIST, USER_NAME_DOES_NOT_EXIST);
+        } else if (logins.size() > 1) {
+            String message = String.format(MULTIPLE_USERS_WITH_USER_NAMSE_S_ALREADY_EXIST_LOGIN_TABLE_IS_CORRUPT, user);
+            LOGGER.warn(message);
+            throw new CatchitSupervisionRuntimeException(message, MULTIPLE_USERS_WITH_THE_SAME_NAME);
+        } else {
+            String pwdHash = logins.get(0).getPwdHash();
+            if (argo2Utility.matches(passwd, pwdHash)) {
+                setupContext(user, user.equals(ADMIN1) ? ADMIN : USER, request, response);
+                return UserAndHashedPassword.builder().userName(user).hash(YUP_THERE_IS_ONE).build();
+            } else {
+                if (!user.equals(ADMIN1) || passwd != ADMIN1) {  // 'admin' is tested programmtically to make sure it's never in use..
+                    LOGGER.warn("Wrong password given for user {}", user);
+                }
 
-				throw new CatchitSupervisionRuntimeException(ErrorCodes.PWD_DOES_NOT_MATCH);
-			}
-		}
-	}
+                throw new CatchitSupervisionRuntimeException(ErrorCodes.PWD_DOES_NOT_MATCH);
+            }
+        }
+    }
 
-	public boolean thereIsAValidSession(HttpServletRequest request) {
-		HttpSession session = request.getSession(false);
-		if (session == null) {
-			log.info(WE_HAVE_NO_SESSION);
-		}
-		if (session != null && request.getCookies() != null) {
+    public boolean thereIsAValidSession(HttpServletRequest request) {
+        HttpSession session = request.getSession(false);
+        if (session == null) {
+            log.info(WE_HAVE_NO_SESSION);
+        }
+        if (session != null && request.getCookies() != null) {
 
-			String cName = cookieName;
-			//if (TomcatDetector.isRunningWithinTomcat()) {
-			//    cName = JSESSIONID;
-			//}
-			final String cookieNameForLookup = cName;
+            String cName = cookieName;
+            //if (TomcatDetector.isRunningWithinTomcat()) {
+            //    cName = JSESSIONID;
+            //}
+            final String cookieNameForLookup = cName;
 
-			Optional<Cookie> possCookie = Arrays.stream(request.getCookies()).filter(c -> c.getName().equals(cookieNameForLookup)).findFirst();
-			if (!possCookie.isPresent()) {
-				log.info(THERE_IS_NO_CATCHITSUPERVISION_COOKIE);
-			} else {
-				if (!possCookie.get().getValue().equals(session.getId())) {
-					log.info(THERE_IS_A_COOKIE_NO_SESSION_MATCH);
-				}
-			}
-			return possCookie.isPresent() && possCookie.get().getValue().equals(session.getId());
-		}
-		return adminIsAuthenticated();
-	}
+            Optional<Cookie> possCookie = Arrays.stream(request.getCookies()).filter(c -> c.getName().equals(cookieNameForLookup)).findFirst();
+            if (!possCookie.isPresent()) {
+                log.info(THERE_IS_NO_CATCHITSUPERVISION_COOKIE);
+            } else {
+                if (!possCookie.get().getValue().equals(session.getId())) {
+                    log.info(THERE_IS_A_COOKIE_NO_SESSION_MATCH);
+                }
+            }
+            return possCookie.isPresent() && possCookie.get().getValue().equals(session.getId());
+        }
+        return adminIsAuthenticated();
+    }
 
-	private void setupContext(String userName, GrantedAuthority grantedAuthority, HttpServletRequest request, HttpServletResponse response) {
-		if (!thereIsAValidSession(request)) {
-			SecurityContext securityContext = SecurityContextHolder.createEmptyContext();
-			Authentication authentication = new UsernamePasswordAuthenticationToken(userName, "secret", Arrays.asList(grantedAuthority));
-			securityContext.setAuthentication(authentication);
-			SecurityContextHolder.setContext(securityContext);
-			// Save the security context to the repo (This adds it to the HTTP session)
-			securityContextRepository.saveContext(securityContext, request, response);
-			// Create a new session and add the security context.
-			HttpSession session = request.getSession(true);
-			session.setMaxInactiveInterval(600); // ten minutes..
+    private void setupContext(String userName, GrantedAuthority grantedAuthority, HttpServletRequest request, HttpServletResponse response) {
+        if (!thereIsAValidSession(request)) {
+            SecurityContext securityContext = SecurityContextHolder.createEmptyContext();
+            Authentication authentication = new UsernamePasswordAuthenticationToken(userName, "secret", Arrays.asList(grantedAuthority));
+            securityContext.setAuthentication(authentication);
+            SecurityContextHolder.setContext(securityContext);
+            // Save the security context to the repo (This adds it to the HTTP session)
+            securityContextRepository.saveContext(securityContext, request, response);
+            // Create a new session and add the security context.
+            HttpSession session = request.getSession(true);
+            session.setMaxInactiveInterval(600); // ten minutes..
 
-			// for tomcat
-			session.setAttribute(SPRING_SECURITY_CONTEXT, securityContext);
-			session.getServletContext().setAttribute(SPRING_SECURITY_CONTEXT, securityContext);
-			LOGGER.info("User {} is now logged in and has a fresh session", userName);
-		}
-	}
+            // for tomcat
+            session.setAttribute(SPRING_SECURITY_CONTEXT, securityContext);
+            session.getServletContext().setAttribute(SPRING_SECURITY_CONTEXT, securityContext);
+            LOGGER.info("User {} is now logged in and has a fresh session", userName);
+        }
+    }
 
-	@Override
-	public UserDetails loadUserByUsername(String user) throws UsernameNotFoundException {
-		List<LoginEntity> logins = loginRepository.findAllByUsernameIs(user);
-		if (logins.isEmpty()) {
-			LOGGER.warn("User {} does not exist", user);
-			throw new UsernameNotFoundException(USER_DOES_NOT_EXIST);
-		} else if (logins.size() > 1) {
-			String message = String.format(MULTIPLE_USERS_WITH_USER_NAMSE_S_ALREADY_EXIST_LOGIN_TABLE_IS_CORRUPT, user);
-			LOGGER.warn(message);
-			throw new UsernameNotFoundException(message);
-		} else {
-			if ((adminIsAuthenticated() && user.equals(ADMIN1)) || getAuthenticatedUserName().equals(user)) {
-				LoginEntity loginEntity = logins.get(0);
-				return UserAndHashedPassword.builder().userName(loginEntity.getUsername()).hash(loginEntity.getPwdHash()).build();
-			} else {
-				String message = String.format(USER_S_IS_NOT_IN_SESSION, user);
-				LOGGER.warn(message);
-				throw new UsernameNotFoundException(message);
-			}
-		}
-	}
+    @Override
+    public UserDetails loadUserByUsername(String user) throws UsernameNotFoundException {
+        List<LoginEntity> logins = loginRepository.findAllByUsernameIs(user);
+        if (logins.isEmpty()) {
+            LOGGER.warn("User {} does not exist", user);
+            throw new UsernameNotFoundException(USER_DOES_NOT_EXIST);
+        } else if (logins.size() > 1) {
+            String message = String.format(MULTIPLE_USERS_WITH_USER_NAMSE_S_ALREADY_EXIST_LOGIN_TABLE_IS_CORRUPT, user);
+            LOGGER.warn(message);
+            throw new UsernameNotFoundException(message);
+        } else {
+            if ((adminIsAuthenticated() && user.equals(ADMIN1)) || getAuthenticatedUserName().equals(user)) {
+                LoginEntity loginEntity = logins.get(0);
+                return UserAndHashedPassword.builder().userName(loginEntity.getUsername()).hash(loginEntity.getPwdHash()).build();
+            } else {
+                String message = String.format(USER_S_IS_NOT_IN_SESSION, user);
+                LOGGER.warn(message);
+                throw new UsernameNotFoundException(message);
+            }
+        }
+    }
 
-	private boolean thereIsAnAuthenticatedUser() {
-		return SecurityContextHolder.getContext().getAuthentication() != null && SecurityContextHolder.getContext().getAuthentication().getPrincipal() != null;
-	}
+    private boolean thereIsAnAuthenticatedUser() {
+        return SecurityContextHolder.getContext().getAuthentication() != null && SecurityContextHolder.getContext().getAuthentication().getPrincipal() != null;
+    }
 
-	private String getAuthenticatedUserName() {
-		if (thereIsAnAuthenticatedUser()) {
-			return SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString();
-		} else {
-			return "";
-		}
-	}
+    private String getAuthenticatedUserName() {
+        if (thereIsAnAuthenticatedUser()) {
+            return SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString();
+        } else {
+            return "";
+        }
+    }
 
-	private boolean adminIsAuthenticated() {
-		return thereIsAnAuthenticatedUser() && SecurityContextHolder.getContext().getAuthentication().getPrincipal().equals(ADMIN1);
-	}
+    private boolean adminIsAuthenticated() {
+        return thereIsAnAuthenticatedUser() && SecurityContextHolder.getContext().getAuthentication().getPrincipal().equals(ADMIN1);
+    }
 }

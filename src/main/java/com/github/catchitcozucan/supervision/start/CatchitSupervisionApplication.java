@@ -17,7 +17,6 @@
  */
 package com.github.catchitcozucan.supervision.start;
 
-import com.github.catchitcozucan.core.impl.CatchIt;
 import com.github.catchitcozucan.supervision.config.SecurityAndAppConfig;
 import jakarta.servlet.ServletContext;
 import org.springframework.boot.SpringApplication;

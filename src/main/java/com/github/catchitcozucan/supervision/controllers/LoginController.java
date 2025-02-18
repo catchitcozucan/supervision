@@ -29,8 +29,12 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/login")
@@ -38,43 +42,42 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class LoginController {
 
-	private static final String JSON_CHARSET_UTF_8 = "application/json; charset=UTF-8";
-	private static final String UNKOWN = "UNKOWN";
+    private static final String JSON_CHARSET_UTF_8 = "application/json; charset=UTF-8";
+    private static final String UNKOWN = "UNKOWN";
 
-	private final UserService userService;
+    private final UserService userService;
 
-	@PutMapping(value = "/set", produces = JSON_CHARSET_UTF_8, consumes = JSON_CHARSET_UTF_8)
-	public UserAndHashedPassword create(@RequestBody Login login, HttpServletRequest request, HttpServletResponse response) {
-		try {
-			login.validate();
-			return userService.createPassword(login.getUserName(), login.getPassword(), request, response);
-		} catch (CatchitSupervisionRuntimeException exec) {
-			throw new BadRequestException(exec);
-		}
-	}
+    @PutMapping(value = "/set", produces = JSON_CHARSET_UTF_8, consumes = JSON_CHARSET_UTF_8)
+    public UserAndHashedPassword create(@RequestBody Login login, HttpServletRequest request, HttpServletResponse response) {
+        try {
+            login.validate();
+            return userService.createPassword(login.getUserName(), login.getPassword(), request, response);
+        } catch (CatchitSupervisionRuntimeException exec) {
+            throw new BadRequestException(exec);
+        }
+    }
 
-	@PostMapping(value = "/verify", produces = JSON_CHARSET_UTF_8, consumes = JSON_CHARSET_UTF_8)
-	public UserAndHashedPassword login(@RequestBody Login login, HttpServletRequest request, HttpServletResponse response) {
-		try {
-			login.validate();
-			return userService.verifyLogin(login.getUserName(), login.getPassword(), request, response);
-		} catch (CatchitSupervisionRuntimeException exec) {
-			String who = UNKOWN;
-			if (StringUtils.hasContents(login.getUserName())) {
-				who = login.getUserName();
-			}
-			log.warn(String.format("Login failed for % s", who));
-			throw new ForbiddenRequestException(exec);
-		}
-	}
+    @PostMapping(value = "/verify", produces = JSON_CHARSET_UTF_8, consumes = JSON_CHARSET_UTF_8)
+    public UserAndHashedPassword login(@RequestBody Login login, HttpServletRequest request, HttpServletResponse response) {
+        try {
+            login.validate();
+            return userService.verifyLogin(login.getUserName(), login.getPassword(), request, response);
+        } catch (CatchitSupervisionRuntimeException exec) {
+            String who = UNKOWN;
+            if (StringUtils.hasContents(login.getUserName())) {
+                who = login.getUserName();
+            }
+            log.warn(String.format("Login failed for % s", who));
+            throw new ForbiddenRequestException(exec);
+        }
+    }
 
-	@GetMapping(value = "/loggedin", produces = JSON_CHARSET_UTF_8)
-	public LoggedInResponse isLOggedIn(HttpServletRequest request, HttpServletResponse response) {
-		try {
-			return LoggedInResponse.builder().isLoggedIn(userService.thereIsAValidSession(request)).build();
-		} catch (CatchitSupervisionRuntimeException exec) {
-			throw new ForbiddenRequestException(exec);
-		}
-	}
-
+    @GetMapping(value = "/loggedin", produces = JSON_CHARSET_UTF_8)
+    public LoggedInResponse isLOggedIn(HttpServletRequest request) {
+        try {
+            return LoggedInResponse.builder().isLoggedIn(userService.thereIsAValidSession(request)).build();
+        } catch (CatchitSupervisionRuntimeException exec) {
+            throw new ForbiddenRequestException(exec);
+        }
+    }
 }
