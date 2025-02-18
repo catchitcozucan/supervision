@@ -1,4 +1,3 @@
- --
  --    Original work by Ola Aronsson 2020
  --    Courtesy of nollettnoll AB &copy; 2012 - 2020
  --
@@ -33,7 +32,7 @@ usual.
 Now you need to create the catchit database, the supervision schema
 and the catchit user to access. This can be done cmdline in Linux
 like (in windows you would do something similar but then probably
-using some kind of SQL workbench, personally I use dbbeaver which
+using some kind of SQL workbench, personally I use dbeaver which
 is free, multi-platform and really nice):
 
 sudo -u postgres psql <<!
@@ -71,7 +70,7 @@ Now restart postgresql:
 
 root@fedora:~# systemctl restart postgresql
 
-Access should be fine, the catcht database online with the supervision schema
-and the catchit user setup. This means the server is ready for the springboot
-driven flyway table definitions to run - you are not ready to startup the
+Access should be fine, the catchit database online with the supervision schema
+and the catchit user setup. This means that the server is ready for the springboot
+driven flyway table definitions to run - you are now ready to startup the
 application!
