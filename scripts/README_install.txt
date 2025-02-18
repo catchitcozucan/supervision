@@ -67,3 +67,14 @@ Then you just do
 > mvn package
 
 and the build props will now be available and it will start fine.
+
+npm-note for Linux:
+
+If localhost:3000 is not working for you when developing locally you might
+want to exchange the start and build commands in package.json to
+
+..
+ "scripts": {
+    "start": "HOST=0.0.0.0 PORT=3000 react-scripts start",
+    "build": "CI=false && react-scripts build",
+    ..

@@ -500,6 +500,7 @@ a:active {
         font-size: 4.8em;
         font-weight: lighter;
         -webkit-font-smoothing: antialiased;
+        margin-left: 180px;
         display: inline-table;
         letter-spacing: -5px;
         background: -webkit-linear-gradient(#e80923, #f3934f);
